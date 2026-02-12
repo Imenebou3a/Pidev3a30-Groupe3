@@ -1,0 +1,304 @@
+/* ============================================
+   LAMMETNA LOGIN - MODERN TRAVEL AGENCY DESIGN
+   ============================================ */
+
+/* === ROOT CONTAINER === */
+.root-container {
+    -fx-background-color: #f8fafc;
+}
+
+.background-container {
+    -fx-background-color: linear-gradient(to bottom right, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);
+}
+
+/* === MAIN LOGIN CARD === */
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 40, 0, 0, 10);
+}
+
+/* ========================================
+   PANNEAU GAUCHE - VISUEL (TURQUOISE/CYAN)
+   ======================================== */
+
+.visual-panel {
+    -fx-background-color: linear-gradient(to bottom right, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);
+    -fx-background-radius: 25px 0 0 25px;
+}
+
+/* Travel Icon */
+.travel-icon {
+    -fx-font-size: 72px;
+    -fx-text-fill: white;
+}
+
+/* Brand */
+.brand-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 42px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 3);
+}
+
+.brand-subtitle {
+    -fx-text-fill: rgba(255, 255, 255, 0.95);
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-max-width: 350px;
+}
+
+/* Features */
+.features-container {
+    -fx-padding: 20 0 20 0;
+}
+
+.feature-icon {
+    -fx-font-size: 32px;
+    -fx-min-width: 50px;
+    -fx-alignment: center;
+}
+
+.feature-title {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.feature-desc {
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-font-size: 13px;
+}
+
+/* Quote */
+.quote-container {
+    -fx-padding: 30 20 0 20;
+}
+
+.quote-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-size: 15px;
+    -fx-font-style: italic;
+    -fx-max-width: 400px;
+}
+
+.quote-author {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 13px;
+}
+
+/* ========================================
+   PANNEAU DROIT - FORMULAIRE
+   ======================================== */
+
+.form-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 0 25px 25px 0;
+}
+
+/* Headers */
+.form-title {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.form-subtitle {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 14px;
+}
+
+/* ========================================
+   INPUT FIELDS - STYLE SIMPLE ET FONCTIONNEL
+   ======================================== */
+
+.input-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* TextField et PasswordField */
+.modern-input {
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 15px;
+    -fx-padding: 15 20 15 20;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-background-insets: 0;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.modern-input:focused {
+    -fx-border-color: #0ea5e9;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(14, 165, 233, 0.2), 8, 0, 0, 0);
+}
+
+/* Checkbox */
+.modern-checkbox {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+}
+
+.modern-checkbox .box {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.modern-checkbox:selected .box {
+    -fx-background-color: #0ea5e9;
+    -fx-border-color: #0ea5e9;
+}
+
+.modern-checkbox:selected .mark {
+    -fx-background-color: white;
+}
+
+/* Links */
+.link-forgot {
+    -fx-text-fill: #0ea5e9;
+    -fx-font-size: 13px;
+    -fx-underline: false;
+    -fx-font-weight: 600;
+}
+
+.link-forgot:hover {
+    -fx-text-fill: #0284c7;
+    -fx-underline: true;
+}
+
+/* Error Messages */
+.error-text {
+    -fx-text-fill: #ef4444;
+    -fx-font-size: 12px;
+    -fx-padding: 5 0 0 0;
+}
+
+.error-message {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 13px;
+    -fx-background-color: #fee2e2;
+    -fx-padding: 12 16 12 16;
+    -fx-background-radius: 8px;
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+/* ========================================
+   BOUTONS
+   ======================================== */
+
+/* Bouton Connexion */
+.btn-login {
+    -fx-background-color: linear-gradient(to right, #0ea5e9 0%, #06b6d4 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(14, 165, 233, 0.4), 15, 0, 0, 5);
+}
+
+.btn-login:hover {
+    -fx-background-color: linear-gradient(to right, #0284c7 0%, #0891b2 100%);
+    -fx-effect: dropshadow(gaussian, rgba(14, 165, 233, 0.6), 20, 0, 0, 8);
+    -fx-scale-y: 1.02;
+}
+
+.btn-login:pressed {
+    -fx-background-color: linear-gradient(to right, #0369a1 0%, #0e7490 100%);
+    -fx-effect: dropshadow(gaussian, rgba(14, 165, 233, 0.3), 10, 0, 0, 3);
+}
+
+/* Divider */
+.divider-line {
+    -fx-background-color: #e2e8f0;
+}
+
+.divider-text {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Sign Up Section */
+.signup-text {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 14px;
+}
+
+.btn-signup {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0ea5e9;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-color: #0ea5e9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}
+
+.btn-signup:hover {
+    -fx-background-color: #0ea5e9;
+    -fx-text-fill: white;
+    -fx-border-color: #0ea5e9;
+    -fx-effect: dropshadow(gaussian, rgba(14, 165, 233, 0.3), 10, 0, 0, 5);
+}
+
+.btn-signup:pressed {
+    -fx-background-color: #0284c7;
+    -fx-border-color: #0284c7;
+}
+
+/* ========================================
+   SEPARATOR
+   ======================================== */
+
+.separator {
+    -fx-background-color: #e2e8f0;
+}
+
+.separator .line {
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* ========================================
+   GIF BACKGROUND & OVERLAY - FULL SIZE
+   ======================================== */
+
+.visual-panel {
+    -fx-background-radius: 25 0 0 25;
+    -fx-background-color: transparent;
+}
+
+.overlay-dark {
+    -fx-background-color: rgba(0, 0, 0, 0.45);
+    -fx-background-radius: 25 0 0 25;
+}
+
+/* Assurer que le texte reste visible avec ombre forte */
+.visual-panel .travel-icon,
+.visual-panel .brand-title,
+.visual-panel .brand-subtitle,
+.visual-panel .feature-title,
+.visual-panel .feature-desc,
+.visual-panel .quote-text,
+.visual-panel .quote-author {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 20, 0, 0, 3);
+}
+
+/* Extra ombre pour le titre */
+.brand-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 25, 0, 0, 4);
+}

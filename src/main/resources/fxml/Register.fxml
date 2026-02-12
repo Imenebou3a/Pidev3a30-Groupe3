@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.RegisterController"
+            styleClass="main-container" prefHeight="700" prefWidth="1200">
+
+    <!-- PANNEAU GAUCHE - IMAGE/BRANDING -->
+    <left>
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(to bottom, #10b981, #059669);"
+              prefWidth="500" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="50" bottom="50" left="50" right="50"/>
+            </padding>
+
+            <Label text="Rejoignez-nous !" textFill="WHITE" styleClass="title" style="-fx-font-size: 48px;">
+                <font>
+                    <Font name="System Bold" size="48"/>
+                </font>
+            </Label>
+
+            <Label text="Créez votre compte et découvrez la Tunisie authentique" textFill="WHITE"
+                   style="-fx-font-size: 18px; -fx-opacity: 0.9;" wrapText="true" textAlignment="CENTER"
+                   maxWidth="400"/>
+
+            <VBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 30 0 0 0;">
+                <Label text="✓ Inscription rapide et gratuite" textFill="WHITE" style="-fx-font-size: 16px;"/>
+                <Label text="✓ Accès à toutes les expériences" textFill="WHITE" style="-fx-font-size: 16px;"/>
+                <Label text="✓ Communauté bienveillante" textFill="WHITE" style="-fx-font-size: 16px;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- PANNEAU DROIT - FORMULAIRE D'INSCRIPTION -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets top="40" bottom="40" left="80" right="80"/>
+                </padding>
+
+                <VBox spacing="10" alignment="CENTER">
+                    <Label text="Créer un compte" styleClass="title"/>
+                    <Label text="Remplissez le formulaire ci-dessous" styleClass="subtitle"/>
+                </VBox>
+
+                <!-- FORMULAIRE -->
+                <VBox spacing="18" maxWidth="400" VBox.vgrow="ALWAYS">
+
+                    <!-- NOM -->
+                    <VBox spacing="8">
+                        <Label text="Nom *"/>
+                        <TextField fx:id="nomField" promptText="Votre nom" styleClass="text-field"/>
+                        <Label fx:id="nomError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- PRÉNOM -->
+                    <VBox spacing="8">
+                        <Label text="Prénom *"/>
+                        <TextField fx:id="prenomField" promptText="Votre prénom" styleClass="text-field"/>
+                        <Label fx:id="prenomError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- EMAIL -->
+                    <VBox spacing="8">
+                        <Label text="Adresse email *"/>
+                        <TextField fx:id="emailField" promptText="exemple@email.com" styleClass="text-field"/>
+                        <Label fx:id="emailError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- TÉLÉPHONE -->
+                    <VBox spacing="8">
+                        <Label text="Téléphone *"/>
+                        <TextField fx:id="telephoneField" promptText="98765432" styleClass="text-field"/>
+                        <Label fx:id="telephoneError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- MOT DE PASSE -->
+                    <VBox spacing="8">
+                        <Label text="Mot de passe *"/>
+                        <PasswordField fx:id="passwordField" promptText="Au moins 8 caractères" styleClass="password-field"/>
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <Label text="Force : "/>
+                            <Label fx:id="passwordStrengthLabel" text="—" style="-fx-font-weight: bold;"/>
+                        </HBox>
+                        <Label fx:id="passwordError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- CONFIRMATION MOT DE PASSE -->
+                    <VBox spacing="8">
+                        <Label text="Confirmer le mot de passe *"/>
+                        <PasswordField fx:id="confirmPasswordField" promptText="Retapez votre mot de passe" styleClass="password-field"/>
+                        <Label fx:id="confirmPasswordError" styleClass="error-label" visible="false" managed="false"/>
+                    </VBox>
+
+                    <!-- ADRESSE (Optionnel) -->
+                    <VBox spacing="8">
+                        <Label text="Adresse (optionnel)"/>
+                        <TextField fx:id="adresseField" promptText="Ville, Région" styleClass="text-field"/>
+                    </VBox>
+
+                    <!-- ACCEPTER LES CONDITIONS -->
+                    <CheckBox fx:id="termsCheckbox" text="J'accepte les conditions d'utilisation" styleClass="check-box"/>
+                    <Label fx:id="termsError" styleClass="error-label" visible="false" managed="false"/>
+
+                    <!-- MESSAGE D'ERREUR/SUCCÈS GLOBAL -->
+                    <Label fx:id="messageLabel" styleClass="error-label" visible="false" managed="false"
+                           wrapText="true" textAlignment="CENTER"/>
+
+                    <!-- BOUTON INSCRIPTION -->
+                    <Button text="Créer mon compte" onAction="#handleRegister" styleClass="btn-primary"
+                            maxWidth="Infinity" prefHeight="50">
+                        <font>
+                            <Font name="System Bold" size="15"/>
+                        </font>
+                    </Button>
+
+                    <!-- SEPARATEUR -->
+                    <Separator/>
+
+                    <!-- LIEN CONNEXION -->
+                    <HBox alignment="CENTER" spacing="5">
+                        <Label text="Vous avez déjà un compte ?" style="-fx-text-fill: #64748b;"/>
+                        <Hyperlink text="Se connecter" onAction="#handleGoToLogin" styleClass="hyperlink"
+                                   style="-fx-font-weight: bold;"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

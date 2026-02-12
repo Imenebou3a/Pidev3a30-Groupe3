@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.ProfilController"
+            styleClass="main-container" prefHeight="700" prefWidth="1200">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label text="Mon Profil" styleClass="title" style="-fx-font-size: 24px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary" visible="false" fx:id="backButton"/>
+            <Button text="Déconnexion" onAction="#handleLogout" styleClass="btn-outline"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENU PRINCIPAL -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="30" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets top="40" bottom="40" left="80" right="80"/>
+                </padding>
+
+                <!-- CARTE INFORMATIONS PERSONNELLES -->
+                <VBox spacing="20" styleClass="card">
+                    <Label text="Informations personnelles" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                    <GridPane hgap="20" vgap="15">
+                        <!-- Colonne 1 -->
+                        <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="Nom *"/>
+                            <TextField fx:id="nomField" styleClass="text-field"/>
+                            <Label fx:id="nomError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Email *"/>
+                            <TextField fx:id="emailField" styleClass="text-field"/>
+                            <Label fx:id="emailError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                            <Label text="Adresse"/>
+                            <TextField fx:id="adresseField" styleClass="text-field"/>
+                        </VBox>
+
+                        <!-- Colonne 2 -->
+                        <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Prénom *"/>
+                            <TextField fx:id="prenomField" styleClass="text-field"/>
+                            <Label fx:id="prenomError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Téléphone *"/>
+                            <TextField fx:id="telephoneField" styleClass="text-field"/>
+                            <Label fx:id="telephoneError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <Label text="Bio"/>
+                            <TextArea fx:id="bioField" prefRowCount="3" styleClass="text-field" wrapText="true"/>
+                        </VBox>
+                    </GridPane>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Rôle : " style="-fx-font-weight: bold;"/>
+                        <Label fx:id="roleLabel" text="USER" styleClass="badge badge-success"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label text="Statut : " style="-fx-font-weight: bold;"/>
+                        <Label fx:id="statutLabel" text="ACTIF" styleClass="badge badge-success"/>
+                    </HBox>
+
+                    <Label fx:id="messageLabel" styleClass="success-label" visible="false" managed="false"/>
+
+                    <HBox spacing="15">
+                        <Button text="💾 Enregistrer les modifications" onAction="#handleSaveProfile" styleClass="btn-primary" prefWidth="250"/>
+                        <Button text="↻ Annuler" onAction="#handleCancel" styleClass="btn-secondary"/>
+                    </HBox>
+                </VBox>
+
+                <!-- CARTE CHANGEMENT DE MOT DE PASSE -->
+                <VBox spacing="20" styleClass="card">
+                    <Label text="Changer le mot de passe" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                    <VBox spacing="15" maxWidth="400">
+                        <VBox spacing="8">
+                            <Label text="Mot de passe actuel"/>
+                            <PasswordField fx:id="currentPasswordField" styleClass="password-field"/>
+                            <Label fx:id="currentPasswordError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8">
+                            <Label text="Nouveau mot de passe"/>
+                            <PasswordField fx:id="newPasswordField" styleClass="password-field"/>
+                            <HBox spacing="5" alignment="CENTER_LEFT">
+                                <Label text="Force : "/>
+                                <Label fx:id="passwordStrengthLabel" text="—" style="-fx-font-weight: bold;"/>
+                            </HBox>
+                            <Label fx:id="newPasswordError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <VBox spacing="8">
+                            <Label text="Confirmer le nouveau mot de passe"/>
+                            <PasswordField fx:id="confirmNewPasswordField" styleClass="password-field"/>
+                            <Label fx:id="confirmNewPasswordError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <Label fx:id="passwordMessageLabel" styleClass="success-label" visible="false" managed="false"/>
+
+                        <Button text="🔐 Modifier le mot de passe" onAction="#handleChangePassword" styleClass="btn-primary" prefWidth="250"/>
+                    </VBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
