@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="tn.esprit.controllers.RegisterController"
-            styleClass="main-container" prefHeight="700" prefWidth="1200">
+            styleClass="main-container">
 
     <!-- PANNEAU GAUCHE - IMAGE/BRANDING -->
     <left>

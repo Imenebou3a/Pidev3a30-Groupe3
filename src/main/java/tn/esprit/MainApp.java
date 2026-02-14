@@ -1,10 +1,13 @@
 package tn.esprit;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainApp extends Application {
 
@@ -15,31 +18,43 @@ public class MainApp extends Application {
         primaryStage = stage;
 
         // Charger la page de connexion
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
-        stage.setTitle("Lammetna - Gestion des Utilisateurs");
-        stage.setScene(scene);
-        stage.setResizable(true);    // Redimensionnable
-        stage.setMaximized(true);    // Maximisée au démarrage
-        stage.setMinWidth(1000);     // Largeur minimale
-        stage.setMinHeight(600);     // Hauteur minimale
-        stage.show();
+        // Charger le CSS approprié pour le login
+        scene.getStylesheets().add(getClass().getResource("/css/login-design.css").toExternalForm());
+
+        primaryStage.setTitle("Lammetna - Gestion des Utilisateurs");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(true);
+        primaryStage.setMaximized(true);
+
+        primaryStage.show();
     }
 
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    public static void changeScene(String fxml, String title) {
+    public static void changeScene(String fxmlPath, String title) {
         try {
-            Parent root = FXMLLoader.load(MainApp.class.getResource(fxml));
-            Scene scene = new Scene(root, 1200, 700);
-            scene.getStylesheets().add(MainApp.class.getResource("/css/style.css").toExternalForm());
-            primaryStage.setTitle(title);
+            Parent root = FXMLLoader.load(MainApp.class.getResource(fxmlPath));
+            Scene scene = new Scene(root);
+
+            // Charger le CSS approprié selon la page
+            if (fxmlPath.toLowerCase().contains("login")) {
+                scene.getStylesheets().add(MainApp.class.getResource("/css/login-design.css").toExternalForm());
+            } else {
+                scene.getStylesheets().add(MainApp.class.getResource("/css/style.css").toExternalForm());
+            }
+
+            // Changer la scène
             primaryStage.setScene(scene);
-        } catch (Exception e) {
+            primaryStage.setTitle(title);
+
+            // FORCER LE PLEIN ÉCRAN avec Platform.runLater
+            Platform.runLater(() -> {
+                primaryStage.setMaximized(false); // D'abord désactiver
+                primaryStage.setMaximized(true);  // Puis réactiver (force le refresh)
+            });
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

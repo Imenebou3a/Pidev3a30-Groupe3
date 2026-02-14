@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="tn.esprit.controllers.DashboardController"
-            styleClass="main-container" prefHeight="700" prefWidth="1200">
+            styleClass="main-container">
 
     <!-- HEADER -->
     <top>
@@ -52,8 +52,8 @@
 
             <!-- BARRE DE RECHERCHE ET FILTRES -->
             <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
-                <Button text="➕ Ajouter" onAction="#handleAddUser" styleClass="btn-success" prefWidth="120"/>
-                <Button fx:id="modifyButton" text="✏️ Modifier" onAction="#handleModifyUser" styleClass="btn-primary" prefWidth="120" disable="true"/>
+                <Button text="➕ Ajouter" onAction="#handleAddUser" styleClass="btn-success" prefWidth="150"/>
+                <Button fx:id="modifyButton" text="✏️ Modifier" onAction="#handleModifyUser" styleClass="btn-primary" prefWidth="150" disable="true"/>
                 <Separator orientation="VERTICAL"/>
                 <TextField fx:id="searchField" promptText="Rechercher par nom, prénom ou email..." styleClass="text-field" HBox.hgrow="ALWAYS" prefWidth="400"/>
                 <Button text="🔍 Rechercher" onAction="#handleSearch" styleClass="btn-primary"/>
