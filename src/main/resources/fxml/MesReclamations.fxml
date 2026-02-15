@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.MesReclamationsController"
+            styleClass="main-container">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary"/>
+            <Label text="Mes Réclamations" styleClass="title" style="-fx-font-size: 24px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" text="" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENU -->
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="30" bottom="30" left="40" right="40"/>
+            </padding>
+
+            <!-- STATISTIQUES -->
+            <HBox spacing="20" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                    <Label fx:id="totalReclamationsLabel" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #2563eb;"/>
+                    <Label text="Total" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                    <Label fx:id="enAttenteLabel" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #f59e0b;"/>
+                    <Label text="En Attente" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                    <Label fx:id="enCoursLabel" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;"/>
+                    <Label text="En Cours" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                    <Label fx:id="resoluesLabel" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+                    <Label text="Résolues" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                </VBox>
+            </HBox>
+
+            <!-- BOUTON AJOUTER -->
+            <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
+                <Button text="➕ Nouvelle Réclamation" onAction="#handleAddReclamation" styleClass="btn-success" prefWidth="200"/>
+                <Separator orientation="VERTICAL"/>
+                <ComboBox fx:id="statutFilter" promptText="Filtrer par statut" styleClass="combo-box" prefWidth="180"/>
+                <ComboBox fx:id="categorieFilter" promptText="Filtrer par catégorie" styleClass="combo-box" prefWidth="180"/>
+                <Button text="↻ Réinitialiser" onAction="#handleReset" styleClass="btn-secondary"/>
+            </HBox>
+
+            <!-- TABLEAU RÉCLAMATIONS -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
+                <Label text="Liste de mes réclamations" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <TableView fx:id="reclamationsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="sujetColumn" text="Sujet" prefWidth="200"/>
+                        <TableColumn fx:id="categorieColumn" text="Catégorie" prefWidth="120"/>
+                        <TableColumn fx:id="statutColumn" text="Statut" prefWidth="120"/>
+                        <TableColumn fx:id="prioriteColumn" text="Priorité" prefWidth="100"/>
+                        <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="200"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>

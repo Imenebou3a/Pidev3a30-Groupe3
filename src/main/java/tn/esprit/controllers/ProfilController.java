@@ -47,7 +47,7 @@ public class ProfilController {
 
         if (currentUser == null) {
             // Rediriger vers login si pas connecté
-            MainApp.changeScene("/fxml/Login.fxml", "Lammetna - Connexion");
+            MainApp.changeScene("/fxml/login.fxml", "Lammetna - Connexion");
             return;
         }
 
@@ -306,10 +306,16 @@ public class ProfilController {
         }
     }
 
+    // ========== NOUVELLE MÉTHODE ==========
+    @FXML
+    private void handleMesReclamations() {
+        MainApp.changeScene("/fxml/MesReclamations.fxml", "Lammetna - Mes Réclamations");
+    }
+
     @FXML
     private void handleLogout() {
         Session.getInstance().deconnecter();
-        MainApp.changeScene("/fxml/Login.fxml", "Lammetna - Connexion");
+        MainApp.changeScene("/fxml/login.fxml", "Lammetna - Connexion");
     }
 
     private void showFieldError(Label errorLabel, Control field, String message) {

@@ -14,6 +14,7 @@
         <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
             <Label text="Mon Profil" styleClass="title" style="-fx-font-size: 24px;"/>
             <Region HBox.hgrow="ALWAYS"/>
+            <Button text="📋 Mes Réclamations" onAction="#handleMesReclamations" styleClass="btn-primary"/>
             <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary" visible="false" fx:id="backButton"/>
             <Button text="Déconnexion" onAction="#handleLogout" styleClass="btn-outline"/>
         </HBox>

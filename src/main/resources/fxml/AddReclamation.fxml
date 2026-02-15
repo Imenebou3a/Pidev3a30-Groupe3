@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.AddReclamationController"
+            styleClass="main-container">
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary"/>
+            <Label text="Nouvelle Réclamation" styleClass="title" style="-fx-font-size: 24px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENU -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="30" alignment="TOP_CENTER">
+                <padding>
+                    <Insets top="50" bottom="50" left="100" right="100"/>
+                </padding>
+
+                <!-- FORMULAIRE -->
+                <VBox spacing="25" maxWidth="800" styleClass="card">
+                    <padding>
+                        <Insets top="40" bottom="40" left="60" right="60"/>
+                    </padding>
+
+                    <Label text="Déposer une réclamation" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label text="Décrivez votre problème et nous vous répondrons dans les plus brefs délais." style="-fx-text-fill: #64748b;"/>
+
+                    <VBox spacing="20">
+                        <!-- Sujet -->
+                        <VBox spacing="8">
+                            <Label text="Sujet *" style="-fx-font-weight: bold;"/>
+                            <TextField fx:id="sujetField" promptText="Ex: Problème de réservation" styleClass="text-field"/>
+                            <Label fx:id="sujetError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <!-- Catégorie -->
+                        <VBox spacing="8">
+                            <Label text="Catégorie *" style="-fx-font-weight: bold;"/>
+                            <ComboBox fx:id="categorieCombo" styleClass="combo-box" maxWidth="Infinity"/>
+                            <Label fx:id="categorieError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <!-- Priorité -->
+                        <VBox spacing="8">
+                            <Label text="Priorité *" style="-fx-font-weight: bold;"/>
+                            <ComboBox fx:id="prioriteCombo" styleClass="combo-box" maxWidth="Infinity"/>
+                        </VBox>
+
+                        <!-- Description -->
+                        <VBox spacing="8">
+                            <Label text="Description détaillée *" style="-fx-font-weight: bold;"/>
+                            <TextArea fx:id="descriptionArea" promptText="Décrivez votre problème en détail..."
+                                      prefRowCount="6" styleClass="text-field" wrapText="true"/>
+                            <Label fx:id="descriptionError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <Separator/>
+
+                    <!-- MESSAGE -->
+                    <Label fx:id="messageLabel" styleClass="error-label" visible="false" managed="false" wrapText="true"/>
+
+                    <!-- BOUTONS -->
+                    <HBox spacing="20" alignment="CENTER">
+                        <Button text="📨 Envoyer la réclamation" onAction="#handleSubmit" styleClass="btn-success" prefWidth="220" prefHeight="45"/>
+                        <Button text="✗ Annuler" onAction="#handleBack" styleClass="btn-outline" prefWidth="150" prefHeight="45"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

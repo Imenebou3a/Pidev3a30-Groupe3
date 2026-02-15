@@ -203,3 +203,103 @@
 .separator {
     -fx-padding: 10 0;
 }
+
+/* ========== RÉCLAMATIONS ========== */
+
+/* Badges de statut */
+.statut-badge {
+    -fx-padding: 5 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.statut-en-attente {
+    -fx-background-color: #f59e0b;
+}
+
+.statut-en-cours {
+    -fx-background-color: #3b82f6;
+}
+
+.statut-resolue {
+    -fx-background-color: #10b981;
+}
+
+.statut-rejetee {
+    -fx-background-color: #ef4444;
+}
+
+/* Badges de priorité */
+.priorite-badge {
+    -fx-padding: 5 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.priorite-basse {
+    -fx-background-color: #6b7280;
+}
+
+.priorite-moyenne {
+    -fx-background-color: #f59e0b;
+}
+
+.priorite-haute {
+    -fx-background-color: #ef4444;
+}
+
+/* Badges de catégorie */
+.categorie-badge {
+    -fx-padding: 5 12;
+    -fx-background-radius: 12;
+    -fx-background-color: #e0f2fe;
+    -fx-text-fill: #0369a1;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Onglets personnalisés */
+.tab-pane .tab {
+    -fx-background-color: #f1f5f9;
+    -fx-padding: 12 24;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-border-color: #0ea5e9;
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab-pane .tab-label {
+    -fx-text-fill: #64748b;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #0ea5e9;
+}
+
+.tab-pane {
+    -fx-tab-min-height: 50px;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: #f8fafc;
+}
+
+/* Amélioration des boutons d'actions dans les tableaux */
+.table-view .table-cell .button {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0, 0, 2);
+}
+
+.table-view .table-cell .button:hover {
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0, 0, 3);
+}
