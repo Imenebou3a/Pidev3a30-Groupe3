@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.PostDetailController" spacing="25" styleClass="post-detail-container">
+    
+    <!-- Action Header -->
+    <HBox spacing="15" styleClass="detail-header" alignment="CENTER_LEFT">
+        <Button text="← Back to Posts" fx:id="backBtn" onAction="#handleBack" styleClass="btn-back"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✏ Edit" fx:id="editBtn" onAction="#handleEdit" styleClass="btn-edit"/>
+        <Button text="🗑 Delete" fx:id="deleteBtn" onAction="#handleDelete" styleClass="btn-delete"/>
+    </HBox>
+    
+    <!-- Post Content Card -->
+    <VBox spacing="20" styleClass="post-detail-content">
+        <!-- Title and Tags -->
+        <HBox spacing="15" alignment="TOP_LEFT">
+            <Label fx:id="titleLabel" styleClass="detail-title" HBox.hgrow="ALWAYS" wrapText="true"/>
+            <VBox spacing="8" alignment="TOP_RIGHT">
+                <Label fx:id="typeLabel" styleClass="detail-type"/>
+                <Label fx:id="statusLabel" styleClass="detail-status"/>
+            </VBox>
+        </HBox>
+        
+        <!-- Decorative Border -->
+        <Separator styleClass="decorative-border"/>
+        
+        <!-- Meta Information -->
+        <HBox spacing="25" styleClass="post-meta" alignment="CENTER_LEFT">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="👤" style="-fx-font-size: 16px;"/>
+                <Label fx:id="userLabel" style="-fx-font-weight: 600; -fx-text-fill: #1B7B7E;"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="📅" style="-fx-font-size: 16px;"/>
+                <Label fx:id="dateLabel"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="👁" style="-fx-font-size: 16px;"/>
+                <Label fx:id="viewsLabel"/>
+            </HBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="⭐" style="-fx-font-size: 18px;"/>
+                <Label fx:id="ratingLabel" styleClass="detail-rating"/>
+            </HBox>
+        </HBox>
+        
+        <!-- Content Section -->
+        <VBox spacing="12">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="📝" styleClass="palm-accent"/>
+                <Label text="Experience Details" styleClass="section-label" style="-fx-font-size: 18px;"/>
+            </HBox>
+            <Label fx:id="contentLabel" styleClass="detail-content" wrapText="true"/>
+        </VBox>
+    </VBox>
+    
+    <!-- Decorative Separator -->
+    <HBox styleClass="decorative-border" prefHeight="3"/>
+    
+    <!-- Comments Action Section -->
+    <VBox spacing="20" styleClass="post-detail-content" alignment="CENTER">
+        <HBox spacing="15" alignment="CENTER">
+            <Label text="💬" style="-fx-font-size: 48px;"/>
+            <VBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="Join the Conversation" style="-fx-font-size: 20px; -fx-font-weight: 700; -fx-text-fill: #1B7B7E;"/>
+                <Label text="Share your thoughts and read what others have to say" style="-fx-font-size: 13px; -fx-text-fill: #4a5568;"/>
+            </VBox>
+        </HBox>
+        
+        <Button text="💬 View &amp; Add Comments" fx:id="viewCommentsBtn" onAction="#handleViewComments" 
+                styleClass="btn-submit" 
+                style="-fx-font-size: 16px; -fx-padding: 16px 48px;"/>
+    </VBox>
+</VBox>

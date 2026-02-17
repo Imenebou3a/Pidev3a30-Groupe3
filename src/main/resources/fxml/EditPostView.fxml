@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.EditPostController" spacing="25" styleClass="create-post-container" alignment="TOP_CENTER">
+    
+    <!-- Header with Icon -->
+    <HBox spacing="15" alignment="CENTER">
+        <Label text="✏" style="-fx-font-size: 36px;" styleClass="palm-accent"/>
+        <VBox spacing="5" alignment="CENTER_LEFT">
+            <Label text="Edit Your Post" styleClass="form-title" style="-fx-padding: 0;"/>
+            <Label text="Update your shared experience and information" 
+                   style="-fx-font-size: 13px; -fx-text-fill: #4a5568; -fx-font-style: italic;"/>
+        </VBox>
+    </HBox>
+    
+    <!-- Decorative Border -->
+    <HBox styleClass="decorative-border" prefHeight="3"/>
+    
+    <!-- Form Fields -->
+    <VBox spacing="20">
+        <HBox spacing="20">
+            <!-- Type Combo -->
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="📂" style="-fx-font-size: 16px;"/>
+                    <Label text="Post Type *" styleClass="form-label"/>
+                </HBox>
+                <ComboBox fx:id="typeCombo" prefWidth="220" promptText="Select type"/>
+            </VBox>
+            
+            <!-- Status Combo -->
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="📊" style="-fx-font-size: 16px;"/>
+                    <Label text="Status *" styleClass="form-label"/>
+                </HBox>
+                <ComboBox fx:id="statusCombo" prefWidth="220" promptText="Select status"/>
+            </VBox>
+            
+            <!-- Rating Spinner -->
+            <VBox spacing="8" prefWidth="120">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="⭐" style="-fx-font-size: 16px;"/>
+                    <Label text="Rating *" styleClass="form-label"/>
+                </HBox>
+                <Spinner fx:id="ratingSpinner" prefWidth="120"/>
+            </VBox>
+        </HBox>
+        
+        <!-- Title Field -->
+        <VBox spacing="8">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="📍" style="-fx-font-size: 16px;"/>
+                <Label text="Title *" styleClass="form-label"/>
+            </HBox>
+            <TextField fx:id="titleField" promptText="Post title"/>
+        </VBox>
+        
+        <!-- Content Area -->
+        <VBox spacing="8">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="📝" style="-fx-font-size: 16px;"/>
+                <Label text="Content *" styleClass="form-label"/>
+            </HBox>
+            <TextArea fx:id="contentArea" 
+                      promptText="Post content..." 
+                      prefRowCount="12" 
+                      wrapText="true"/>
+            <Label text="* All fields are required" 
+                   style="-fx-font-size: 11px; -fx-text-fill: #999999; -fx-font-style: italic;"/>
+        </VBox>
+        
+        <!-- Action Buttons -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="💾 Save Changes" fx:id="saveBtn" onAction="#handleSave" styleClass="btn-submit"/>
+            <Button text="✕ Cancel" fx:id="cancelBtn" onAction="#handleCancel" styleClass="btn-cancel"/>
+        </HBox>
+    </VBox>
+    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</VBox>

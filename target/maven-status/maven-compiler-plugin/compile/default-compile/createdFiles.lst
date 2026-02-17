@@ -1,0 +1,7 @@
+org\example\MainFX.class
+org\example\controllers\BackofficeController.class
+org\example\controllers\EditPostController.class
+org\example\controllers\PostListController.class
+org\example\controllers\CreatePostController.class
+org\example\controllers\PostDetailController.class
+org\example\controllers\MainController.class

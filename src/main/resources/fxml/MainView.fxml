@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.MainController" fx:id="mainContainer" styleClass="main-content">
+    <top>
+        <VBox styleClass="header-container">
+            <HBox styleClass="header-bar">
+                <!-- Logo and App Title -->
+                <HBox styleClass="logo-container" spacing="15">
+                    <ImageView styleClass="app-logo" preserveRatio="true" fitWidth="250" fitHeight="250">
+                        <Image url="@/logo.png"/>
+                    </ImageView>
+                    <VBox alignment="CENTER_LEFT" spacing="2">
+                        <Label text="Lammetna" styleClass="app-title"/>
+                        <Label text="Discover Tunisia's Hidden Gems" styleClass="app-subtitle"/>
+                    </VBox>
+                </HBox>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <!-- Navigation Buttons -->
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button text="🗺 Explore Posts" fx:id="btnPosts" onAction="#loadPostList" styleClass="nav-btn"/>
+                    <Button text="✍ Share Experience" fx:id="btnCreatePost" onAction="#loadCreatePost" styleClass="nav-btn"/>
+                    <Button text="⚙ Admin Panel" fx:id="btnBackoffice" onAction="#loadBackoffice" styleClass="nav-btn nav-btn-admin"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <VBox/>
+    </center>
+</BorderPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.BackofficeController" spacing="20" styleClass="backoffice-container">
+    
+    <!-- Admin Header -->
+    <HBox spacing="15" styleClass="backoffice-header" alignment="CENTER_LEFT">
+        <Label text="⚙" style="-fx-font-size: 32px; -fx-text-fill: #D2691E;"/>
+        <VBox spacing="3">
+            <Label text="Admin Control Panel" styleClass="admin-title"/>
+            <Label text="Manage community posts and content moderation" 
+                   style="-fx-font-size: 12px; -fx-text-fill: #4a5568; -fx-font-style: italic;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="🔄 Refresh Data" fx:id="refreshBtn" onAction="#loadPosts" styleClass="btn-refresh"/>
+    </HBox>
+    
+    <!-- Posts Management Area -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane" style="-fx-background-color: transparent;">
+        <VBox fx:id="postsContainer" spacing="18" styleClass="posts-container">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+        </VBox>
+    </ScrollPane>
+</VBox>

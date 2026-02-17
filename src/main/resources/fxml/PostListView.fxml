@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.PostListController" spacing="20" styleClass="post-list-container">
+    
+    <!-- Enhanced Filter Bar with Icons -->
+    <HBox spacing="15" styleClass="filter-bar" alignment="CENTER_LEFT">
+        <Label text="🔍" styleClass="palm-accent"/>
+        <TextField fx:id="searchField" promptText="Search for hidden gems, experiences, recommendations..." HBox.hgrow="ALWAYS" onKeyReleased="#onSearchKeyReleased"/>
+        
+        <Separator orientation="VERTICAL"/>
+        
+        <Label text="📂" styleClass="palm-accent"/>
+        <ComboBox fx:id="typeFilter" onAction="#onFilterChange" prefWidth="180" promptText="Filter by type"/>
+        
+        <Separator orientation="VERTICAL"/>
+        
+        <Button text="✨ Clear" onAction="#clearSearch" styleClass="btn-cancel"/>
+        <Button text="🔄 Refresh" fx:id="refreshBtn" onAction="#loadPosts" styleClass="btn-refresh"/>
+    </HBox>
+    
+    <!-- Welcome Message -->
+    <VBox styleClass="post-detail-content" spacing="10">
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="🌴" styleClass="palm-accent" style="-fx-font-size: 32px;"/>
+            <VBox spacing="5">
+                <Label text="Discover Tunisia's Hidden Treasures" style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1B7B7E;"/>
+                <Label text="Share your experiences, discover secret spots, and connect with fellow travelers exploring Tunisia's authentic beauty." 
+                       style="-fx-font-size: 13px; -fx-text-fill: #4a5568; -fx-wrap-text: true;" wrapText="true"/>
+            </VBox>
+        </HBox>
+    </VBox>
+    
+    <!-- Posts Container with ScrollPane -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane" style="-fx-background-color: transparent;">
+        <VBox fx:id="postsContainer" spacing="18" styleClass="posts-container">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+        </VBox>
+    </ScrollPane>
+</VBox>
