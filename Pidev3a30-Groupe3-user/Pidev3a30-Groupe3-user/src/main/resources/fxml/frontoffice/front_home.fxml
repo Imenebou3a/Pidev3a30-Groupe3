@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.frontoffice.FrontHomeController"
+            stylesheets="@../frontoffice/front.css">
+
+    <!-- Header Hero -->
+    <top>
+        <VBox styleClass="hero-header">
+            <HBox styleClass="hero-content" alignment="CENTER" spacing="30">
+                <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                    <Label text="LAMMETNA" styleClass="hero-title"/>
+                    <Label text="Artisanat Tunisien Authentique" styleClass="hero-subtitle"/>
+                </VBox>
+
+                <!-- Barre de recherche -->
+                <TextField fx:id="txtRecherche" promptText="Rechercher un produit..."
+                           styleClass="search-field" prefWidth="400"/>
+
+                <!-- Bouton Retour Admin -->
+                <Button fx:id="btnRetourAdmin" text="← Retour Admin" styleClass="btn-retour-admin"/>
+            </HBox>
+
+            <!-- Onglets Produits/Kits -->
+            <HBox styleClass="onglets-container" spacing="10" alignment="CENTER">
+                <Button fx:id="btnProduits" text="Produits Locaux" styleClass="onglet-btn,onglet-actif"/>
+                <Button fx:id="btnKits" text="Kits Hobbies" styleClass="onglet-btn"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <HBox>
+            <!-- Sidebar filtres -->
+            <VBox styleClass="sidebar-filtres" prefWidth="250" spacing="20">
+                <Label text="FILTRES" styleClass="filtres-titre"/>
+
+                <!-- Filtres Produits -->
+                <VBox fx:id="filtresProduits" spacing="15">
+                    <VBox spacing="5">
+                        <Label text="Catégorie" styleClass="filtre-label"/>
+                        <ComboBox fx:id="comboCategorie" styleClass="filtre-combo" maxWidth="Infinity"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Région" styleClass="filtre-label"/>
+                        <ComboBox fx:id="comboRegion" styleClass="filtre-combo" maxWidth="Infinity"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Prix maximum" styleClass="filtre-label"/>
+                        <Slider fx:id="sliderPrix" styleClass="filtre-slider" maxWidth="Infinity"/>
+                        <Label fx:id="lblPrixMax" styleClass="prix-label"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Filtres Kits -->
+                <VBox fx:id="filtresKits" spacing="15" visible="false">
+                    <VBox spacing="5">
+                        <Label text="Type d'artisanat" styleClass="filtre-label"/>
+                        <ComboBox fx:id="comboType" styleClass="filtre-combo" maxWidth="Infinity"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Niveau" styleClass="filtre-label"/>
+                        <ComboBox fx:id="comboNiveau" styleClass="filtre-combo" maxWidth="Infinity"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Tri -->
+                <VBox spacing="5">
+                    <Label text="Trier par" styleClass="filtre-label"/>
+                    <ComboBox fx:id="comboTri" styleClass="filtre-combo" maxWidth="Infinity"/>
+                </VBox>
+            </VBox>
+
+            <!-- Grille produits -->
+            <ScrollPane fitToWidth="true" HBox.hgrow="ALWAYS" styleClass="scroll-produits">
+                <FlowPane fx:id="gridProduits" hgap="20" vgap="20" styleClass="grid-produits">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                </FlowPane>
+            </ScrollPane>
+
+            <!-- Panel détail (caché par défaut) -->
+            <VBox fx:id="panelDetail" styleClass="panel-detail" prefWidth="350" visible="false">
+                <HBox alignment="CENTER_RIGHT">
+                    <Button text="✕" styleClass="btn-fermer" onAction="#fermerDetail"/>
+                </HBox>
+
+                <VBox spacing="15" VBox.vgrow="ALWAYS">
+                    <Label fx:id="lblDetailNom" styleClass="detail-nom" wrapText="true"/>
+                    <Label fx:id="lblDetailCategorie" styleClass="detail-categorie"/>
+                    <Label fx:id="lblDetailPrix" styleClass="detail-prix"/>
+                    <Label fx:id="lblDetailStock" styleClass="detail-stock"/>
+                    <Separator/>
+                    <Label fx:id="lblDetailDescription" styleClass="detail-description" wrapText="true"/>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

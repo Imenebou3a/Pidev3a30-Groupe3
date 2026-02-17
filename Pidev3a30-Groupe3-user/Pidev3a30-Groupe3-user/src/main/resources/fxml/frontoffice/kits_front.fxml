@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.frontoffice.KitFrontController"
+      spacing="25" style="-fx-background-color: #fdf8f2;">
+    <padding><Insets top="30" bottom="30" left="50" right="50"/></padding>
+
+    <!-- Header Section -->
+    <VBox spacing="10">
+        <Label text="🎨 Kits Hobbies Créatifs" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+        <Label text="Apprenez l'artisanat tunisien avec nos kits complets" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+        <Label fx:id="lblNombreResultats" text="0 kit(s) trouvé(s)" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-style: italic;"/>
+    </VBox>
+
+    <!-- Filters Section -->
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
+        <TextField fx:id="searchField" promptText="🔍 Rechercher un kit..." prefWidth="300" styleClass="text-field"/>
+        <ComboBox fx:id="filterType" promptText="Type d'artisanat" prefWidth="150" styleClass="combo-box"/>
+        <ComboBox fx:id="filterNiveau" promptText="Niveau" prefWidth="150" styleClass="combo-box"/>
+        <ComboBox fx:id="filterTri" promptText="Trier par" prefWidth="150" styleClass="combo-box"/>
+        <Button text="↻ Réinitialiser" onAction="#handleResetFiltres" styleClass="btn-secondary"/>
+    </HBox>
+
+    <!-- Kits Grid -->
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+        <GridPane fx:id="gridKits" hgap="20" vgap="20" style="-fx-background-color: transparent; -fx-padding: 10;"/>
+    </ScrollPane>
+
+</VBox>

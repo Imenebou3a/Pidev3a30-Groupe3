@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.backoffice.DashboardBackController"
+            style="-fx-background: #fdf8f2; -fx-background-color: #fdf8f2;">
+    <VBox style="-fx-background-color: #fdf8f2;" spacing="0">
+        <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+        <!-- Titre -->
+        <VBox spacing="4">
+            <Label text="Tableau de Bord" styleClass="page-title"/>
+            <Label text="Vue d'ensemble de votre activité Lammetna" styleClass="page-subtitle"/>
+        </VBox>
+
+        <Region prefHeight="20"/>
+
+        <!-- KPI Utilisateurs -->
+        <Label text="UTILISATEURS" styleClass="nav-section-label"
+               style="-fx-text-fill: #7a6a5a; -fx-font-size: 11px; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 0 0 8 0;"/>
+        <HBox spacing="16">
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="totalUsersLabel" text="0" styleClass="kpi-value-teal"/>
+                <Label text="Total Utilisateurs" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="totalAdminsLabel" text="0" styleClass="kpi-value-orange"/>
+                <Label text="Admins" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="totalHotesLabel" text="0" styleClass="kpi-value-teal"/>
+                <Label text="Hôtes" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="totalPendingLabel" text="0" styleClass="kpi-value-orange"/>
+                <Label text="En Attente" styleClass="kpi-label"/>
+            </VBox>
+        </HBox>
+
+        <Region prefHeight="16"/>
+
+        <!-- KPI Réclamations -->
+        <Label text="RÉCLAMATIONS" styleClass="nav-section-label"
+               style="-fx-text-fill: #7a6a5a; -fx-font-size: 11px; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 0 0 8 0;"/>
+        <HBox spacing="16">
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="totalReclamationsLabel" text="0" styleClass="kpi-value-teal"/>
+                <Label text="Total Réclamations" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="reclamationsEnAttenteLabel" text="0" styleClass="kpi-value-orange"/>
+                <Label text="En Attente" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="reclamationsEnCoursLabel" text="0" styleClass="kpi-value-teal"/>
+                <Label text="En Cours" styleClass="kpi-label"/>
+            </VBox>
+            <VBox styleClass="kpi-card" alignment="CENTER" prefWidth="170" spacing="5">
+                <Label fx:id="reclamationsResoluesLabel" text="0" styleClass="kpi-value-green"/>
+                <Label text="Résolues" styleClass="kpi-label"/>
+            </VBox>
+        </HBox>
+
+        <Region prefHeight="20"/>
+
+        <!-- Tableau Utilisateurs -->
+        <VBox styleClass="content-card" spacing="14">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Gestion des Utilisateurs" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200" styleClass="search-field"/>
+                <ComboBox fx:id="roleFilter" prefWidth="120"/>
+                <ComboBox fx:id="statutFilter" prefWidth="130"/>
+                <Button text="Rechercher" onAction="#handleSearch" styleClass="btn-primary"/>
+                <Button text="Réinitialiser" onAction="#handleReset" styleClass="btn-secondary"/>
+            </HBox>
+
+            <TableView fx:id="usersTable" prefHeight="280" maxWidth="Infinity">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="45"/>
+                    <TableColumn fx:id="nomColumn" text="Nom" prefWidth="110"/>
+                    <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="110"/>
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                    <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="110"/>
+                    <TableColumn fx:id="roleColumn" text="Rôle" prefWidth="80"/>
+                    <TableColumn fx:id="statutColumn" text="Statut" prefWidth="90"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="200"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun utilisateur" style="-fx-text-fill: #7a6a5a;"/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="10">
+                <Button fx:id="modifyButton" text="Modifier" onAction="#handleModifyUser"
+                        styleClass="btn-edit" disable="true"/>
+                <Button text="Ajouter" onAction="#handleAddUser" styleClass="btn-add"/>
+            </HBox>
+        </VBox>
+
+        <Region prefHeight="20"/>
+
+        <!-- Tableau Réclamations -->
+        <VBox styleClass="content-card" spacing="14">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Gestion des Réclamations" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="reclamationStatutFilter" prefWidth="130"/>
+                <ComboBox fx:id="reclamationCategorieFilter" prefWidth="130"/>
+                <ComboBox fx:id="reclamationPrioriteFilter" prefWidth="110"/>
+                <Button text="Réinitialiser" onAction="#handleResetReclamations" styleClass="btn-secondary"/>
+            </HBox>
+
+            <TableView fx:id="reclamationsTable" prefHeight="280" maxWidth="Infinity">
+                <columns>
+                    <TableColumn fx:id="reclamationIdColumn" text="ID" prefWidth="45"/>
+                    <TableColumn fx:id="reclamationUtilisateurColumn" text="Utilisateur" prefWidth="130"/>
+                    <TableColumn fx:id="reclamationSujetColumn" text="Sujet" prefWidth="180"/>
+                    <TableColumn fx:id="reclamationCategorieColumn" text="Catégorie" prefWidth="100"/>
+                    <TableColumn fx:id="reclamationStatutColumn" text="Statut" prefWidth="100"/>
+                    <TableColumn fx:id="reclamationPrioriteColumn" text="Priorité" prefWidth="85"/>
+                    <TableColumn fx:id="reclamationDateColumn" text="Date" prefWidth="130"/>
+                    <TableColumn fx:id="reclamationActionsColumn" text="Actions" prefWidth="220"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune réclamation" style="-fx-text-fill: #7a6a5a;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <!-- Label bienvenue (fx:id requis par DashboardController) -->
+        <Label fx:id="welcomeLabel" visible="false" managed="false"/>
+
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.controllers.backoffice.ProduitBackController"
+      styleClass="main-content" spacing="0">
+
+    <!-- Header -->
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="15">
+        <Label text="🏺 Gestion des Produits Locaux" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblStats" text="Total: 0 produits" styleClass="stats-label"/>
+    </HBox>
+
+    <!-- TabPane Principal -->
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+        <!-- TAB 1: LISTE & RECHERCHE -->
+        <Tab text="📋 Liste des Produits">
+            <VBox spacing="15" styleClass="tab-content">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                <!-- Barre de recherche et filtres -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtRecherche" promptText="🔍 Rechercher par nom..."
+                               styleClass="search-field" prefWidth="300"/>
+                    <ComboBox fx:id="comboCategorie" promptText="Catégorie"
+                              styleClass="filter-combo" prefWidth="150"/>
+                    <ComboBox fx:id="comboRegion" promptText="Région"
+                              styleClass="filter-combo" prefWidth="150"/>
+                    <Button text="Réinitialiser" onAction="#reinitialiserFiltres" styleClass="btn-secondary"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Exporter CSV" onAction="#exporterCSV" styleClass="btn-secondary"/>
+                </HBox>
+
+                <!-- Tableau -->
+                <TableView fx:id="tableProduits" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn text="ID" prefWidth="60" fx:id="colId"/>
+                        <TableColumn text="Nom" prefWidth="200" fx:id="colNom"/>
+                        <TableColumn text="Catégorie" prefWidth="120" fx:id="colCategorie"/>
+                        <TableColumn text="Région" prefWidth="120" fx:id="colRegion"/>
+                        <TableColumn text="Prix (TND)" prefWidth="100" fx:id="colPrix"/>
+                        <TableColumn text="Stock" prefWidth="80" fx:id="colStock"/>
+                        <TableColumn text="Actions" prefWidth="200" fx:id="colActions"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucun produit trouvé" styleClass="placeholder-label"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- TAB 2: AJOUTER -->
+        <Tab text="➕ Ajouter un Produit">
+            <ScrollPane fitToWidth="true" styleClass="form-scroll">
+                <VBox spacing="20" styleClass="tab-content">
+                    <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+                    <Label text="Nouveau Produit Local" styleClass="form-title"/>
+
+                    <GridPane hgap="20" vgap="10" styleClass="form-grid">
+                        <!-- Ligne 1: Nom -->
+                        <Label text="Nom du produit *" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <TextField fx:id="txtAjoutNom" promptText="Ex: Chéchia traditionnelle" styleClass="form-field"/>
+                            <Label fx:id="lblErreurNom" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <Label text="Catégorie *" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <ComboBox fx:id="comboAjoutCategorie" promptText="Sélectionner" styleClass="form-field" maxWidth="Infinity"/>
+                            <Label fx:id="lblErreurCategorie" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <!-- Ligne 2: Région et Prix -->
+                        <Label text="Région d'origine *" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <ComboBox fx:id="comboAjoutRegion" promptText="Sélectionner" styleClass="form-field" maxWidth="Infinity"/>
+                            <Label fx:id="lblErreurRegion" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <Label text="Prix (TND) *" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <TextField fx:id="txtAjoutPrix" promptText="0.00" styleClass="form-field"/>
+                            <Label fx:id="lblErreurPrix" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <!-- Ligne 3: Stock et URL -->
+                        <Label text="Stock *" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <TextField fx:id="txtAjoutStock" promptText="0" styleClass="form-field"/>
+                            <Label fx:id="lblErreurStock" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <Label text="URL Image" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                            <TextField fx:id="txtAjoutImageUrl" promptText="https://..." styleClass="form-field"/>
+                            <Label fx:id="lblErreurUrl" styleClass="error-label" wrapText="true" visible="false"/>
+                        </VBox>
+
+                        <!-- Description (pleine largeur) -->
+                        <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label"/>
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3">
+                            <TextArea fx:id="txtAjoutDescription" promptText="Description détaillée du produit..."
+                                      prefRowCount="4" styleClass="form-textarea" wrapText="true"/>
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label fx:id="lblErreurDescription" styleClass="error-label" wrapText="true" visible="false" HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblCompteurDescription" text="0/1000" styleClass="char-counter"/>
+                            </HBox>
+                        </VBox>
+
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="15"/>
+                            <ColumnConstraints percentWidth="35"/>
+                            <ColumnConstraints percentWidth="15"/>
+                            <ColumnConstraints percentWidth="35"/>
+                        </columnConstraints>
+                    </GridPane>
+
+                    <!-- Zone de message globale -->
+                    <VBox spacing="10" alignment="CENTER">
+                        <Label fx:id="lblMessageGlobal" styleClass="message-label" wrapText="true" visible="false"/>
+
+                        <HBox spacing="10" alignment="CENTER">
+                            <Button text="✓ Ajouter le Produit" onAction="#ajouterProduit" styleClass="btn-primary" prefWidth="200"/>
+                            <Button text="Réinitialiser" onAction="#reinitialiserFormulaireAjout" styleClass="btn-secondary" prefWidth="150"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 3: MODIFIER -->
+        <Tab text="✏️ Modifier un Produit">
+            <ScrollPane fitToWidth="true" styleClass="form-scroll">
+                <VBox spacing="20" styleClass="tab-content">
+                    <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+                    <Label text="Modifier un Produit Existant" styleClass="form-title"/>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Sélectionner le produit à modifier:" styleClass="form-label"/>
+                        <ComboBox fx:id="comboModifierProduit" promptText="Choisir un produit..."
+                                  styleClass="form-field" prefWidth="400" onAction="#chargerProduitPourModification"/>
+                    </HBox>
+
+                    <Separator/>
+
+                    <GridPane hgap="20" vgap="15" styleClass="form-grid">
+                        <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label"/>
+                        <TextField fx:id="txtModifId" editable="false"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="form-field-disabled"/>
+
+                        <Label text="Nom du produit *" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="form-label"/>
+                        <TextField fx:id="txtModifNom"
+                                   GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="form-field"/>
+
+                        <Label text="Catégorie *" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label"/>
+                        <ComboBox fx:id="comboModifCategorie"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="form-field" maxWidth="Infinity"/>
+
+                        <Label text="Région *" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="form-label"/>
+                        <ComboBox fx:id="comboModifRegion"
+                                  GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="form-field" maxWidth="Infinity"/>
+
+                        <Label text="Prix (TND) *" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label"/>
+                        <TextField fx:id="txtModifPrix"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="form-field"/>
+
+                        <Label text="Stock *" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="form-label"/>
+                        <TextField fx:id="txtModifStock"
+                                   GridPane.columnIndex="3" GridPane.rowIndex="2" styleClass="form-field"/>
+
+                        <Label text="URL Image" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label"/>
+                        <TextField fx:id="txtModifImageUrl"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3" styleClass="form-field"/>
+
+                        <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="form-label"/>
+                        <TextArea fx:id="txtModifDescription"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3"
+                                  prefRowCount="4" styleClass="form-textarea" wrapText="true"/>
+
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="15"/>
+                            <ColumnConstraints percentWidth="35"/>
+                            <ColumnConstraints percentWidth="15"/>
+                            <ColumnConstraints percentWidth="35"/>
+                        </columnConstraints>
+                    </GridPane>
+
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button text="💾 Enregistrer les Modifications" onAction="#modifierProduit" styleClass="btn-primary" prefWidth="250"/>
+                        <Button text="Annuler" onAction="#annulerModification" styleClass="btn-secondary" prefWidth="150"/>
+                    </HBox>
+
+                    <Label fx:id="lblMessageModif" styleClass="message-label" wrapText="true"/>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 4: SUPPRIMER -->
+        <Tab text="🗑️ Supprimer un Produit">
+            <VBox spacing="25" styleClass="tab-content" alignment="TOP_CENTER">
+                <padding><Insets top="50" right="40" bottom="30" left="40"/></padding>
+
+                <Label text="⚠️ Suppression de Produit" styleClass="form-title" style="-fx-text-fill: #c0392b;"/>
+
+                <VBox spacing="15" alignment="CENTER" maxWidth="600">
+                    <Label text="Attention: Cette action est irréversible !"
+                           styleClass="warning-text" wrapText="true" style="-fx-text-alignment: center;"/>
+
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Sélectionner le produit:" styleClass="form-label"/>
+                        <ComboBox fx:id="comboSupprimerProduit" promptText="Choisir un produit..."
+                                  styleClass="form-field" prefWidth="350" onAction="#afficherDetailsProduitASupprimer"/>
+                    </HBox>
+
+                    <Separator prefWidth="500"/>
+
+                    <!-- Détails du produit sélectionné -->
+                    <VBox fx:id="detailsSuppressionBox" spacing="10" visible="false"
+                          styleClass="details-box" alignment="CENTER_LEFT" maxWidth="500">
+                        <Label text="Détails du produit à supprimer:" styleClass="form-label"/>
+                        <Label fx:id="lblSupprNom" styleClass="detail-text"/>
+                        <Label fx:id="lblSupprCategorie" styleClass="detail-text"/>
+                        <Label fx:id="lblSupprPrix" styleClass="detail-text"/>
+                        <Label fx:id="lblSupprStock" styleClass="detail-text"/>
+                    </VBox>
+
+                    <HBox spacing="15" alignment="CENTER">
+                        <Button text="🗑️ Confirmer la Suppression" onAction="#supprimerProduit"
+                                styleClass="btn-danger" prefWidth="250"/>
+                        <Button text="Annuler" onAction="#annulerSuppression"
+                                styleClass="btn-secondary" prefWidth="150"/>
+                    </HBox>
+
+                    <Label fx:id="lblMessageSuppr" styleClass="message-label" wrapText="true"/>
+                </VBox>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+
+</VBox>

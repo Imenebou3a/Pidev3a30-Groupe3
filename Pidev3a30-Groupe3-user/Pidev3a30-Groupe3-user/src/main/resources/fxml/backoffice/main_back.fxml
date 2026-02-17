@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.backoffice.MainBackController"
+            stylesheets="@/css/backoffice.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- ===== SIDEBAR GAUCHE ===== -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="225" spacing="0">
+
+            <!-- En-tête logo -->
+            <VBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="3">
+                <padding><Insets top="22" bottom="18" left="20" right="10"/></padding>
+                <Label text="LAMMETNA" styleClass="sidebar-brand"/>
+                <Label text="Admin Panel" styleClass="sidebar-sub"/>
+            </VBox>
+
+            <!-- Navigation scrollable -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER"
+                        style="-fx-background: transparent; -fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                <VBox spacing="2">
+                    <padding><Insets top="12" left="12" right="12" bottom="8"/></padding>
+
+                    <!-- Section MENU PRINCIPAL -->
+                    <Label text="MENU PRINCIPAL" styleClass="nav-section-label"/>
+
+                    <Button fx:id="btnDashboard" text="  Dashboard"
+                            onAction="#chargerDashboard"
+                            styleClass="nav-btn, nav-btn-active"
+                            maxWidth="Infinity"/>
+
+                    <Button fx:id="btnProduits" text="  Produits Locaux"
+                            onAction="#chargerProduits"
+                            styleClass="nav-btn"
+                            maxWidth="Infinity"/>
+
+                    <Button fx:id="btnKits" text="  Kits Hobbies"
+                            onAction="#chargerKits"
+                            styleClass="nav-btn"
+                            maxWidth="Infinity"/>
+
+                    <Button fx:id="btnUtilisateurs" text="  Utilisateurs"
+                            onAction="#chargerUtilisateurs"
+                            styleClass="nav-btn"
+                            maxWidth="Infinity"/>
+
+                    <Button fx:id="btnReclamations" text="  Reclamations"
+                            onAction="#chargerReclamations"
+                            styleClass="nav-btn"
+                            maxWidth="Infinity"/>
+
+                    <!-- Section AUTRES MODULES -->
+                    <Label text="AUTRES MODULES" styleClass="nav-section-label"/>
+
+                    <Button text="  Evenements" styleClass="nav-btn-disabled" maxWidth="Infinity" disable="true"/>
+                    <Button text="  Hebergements" styleClass="nav-btn-disabled" maxWidth="Infinity" disable="true"/>
+                    <Button text="  Forum" styleClass="nav-btn-disabled" maxWidth="Infinity" disable="true"/>
+
+                    <!-- Section VISITEUR -->
+                    <Label text="VISITEUR" styleClass="nav-section-label"/>
+
+                    <Button text="  Boutique" styleClass="nav-btn-disabled" maxWidth="Infinity" disable="true"/>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- Déconnexion en bas -->
+            <VBox spacing="5" alignment="CENTER">
+                <padding><Insets top="8" bottom="14" left="12" right="12"/></padding>
+                <Button text="  Deconnexion" onAction="#handleDeconnexion"
+                        styleClass="nav-btn-logout" maxWidth="Infinity"/>
+                <Label text="Lammetna v1.0" styleClass="sidebar-version"/>
+            </VBox>
+
+        </VBox>
+    </left>
+
+    <!-- ===== HEADER HAUT ===== -->
+    <top>
+        <HBox styleClass="top-header" alignment="CENTER_RIGHT" spacing="12">
+            <padding><Insets top="10" bottom="10" left="20" right="24"/></padding>
+            <Button text="👤 Mon Profil" onAction="#chargerProfil" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #1a7a7a; -fx-font-weight: bold; -fx-cursor: hand;"/>
+            <Separator orientation="VERTICAL" prefHeight="30"/>
+            <Label fx:id="lblNomAdmin" styleClass="header-user-name"/>
+            <StackPane styleClass="avatar-circle">
+                <Label fx:id="lblInitiales" styleClass="avatar-text"/>
+            </StackPane>
+        </HBox>
+    </top>
+
+    <!-- ===== CONTENU CENTRAL ===== -->
+    <center>
+        <BorderPane fx:id="mainPane" style="-fx-background-color: #fdf8f2;"/>
+    </center>
+
+</BorderPane>

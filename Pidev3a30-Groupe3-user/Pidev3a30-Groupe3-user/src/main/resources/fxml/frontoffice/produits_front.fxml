@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.frontoffice.ProduitsFrontController"
+      spacing="25" style="-fx-background-color: #fdf8f2;">
+    <padding><Insets top="30" bottom="30" left="50" right="50"/></padding>
+
+    <!-- Header Section -->
+    <VBox spacing="10">
+        <Label text="🛍️ Produits Locaux Tunisiens" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+        <Label text="Découvrez l'authenticité de l'artisanat tunisien" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+        <Label fx:id="lblNombreResultats" text="0 produit(s) trouvé(s)" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-style: italic;"/>
+    </VBox>
+
+    <!-- Filters Section -->
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
+        <TextField fx:id="searchField" promptText="🔍 Rechercher un produit..." prefWidth="300" styleClass="text-field"/>
+        <ComboBox fx:id="filterCategorie" promptText="Catégorie" prefWidth="150" styleClass="combo-box"/>
+        <ComboBox fx:id="filterRegion" promptText="Région" prefWidth="150" styleClass="combo-box"/>
+        <ComboBox fx:id="filterTri" promptText="Trier par" prefWidth="150" styleClass="combo-box"/>
+        <Button text="↻ Réinitialiser" onAction="#handleResetFiltres" styleClass="btn-secondary"/>
+    </HBox>
+
+    <!-- Products Grid -->
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+        <GridPane fx:id="gridProduits" hgap="20" vgap="20" style="-fx-background-color: transparent; -fx-padding: 10;"/>
+    </ScrollPane>
+
+</VBox>
