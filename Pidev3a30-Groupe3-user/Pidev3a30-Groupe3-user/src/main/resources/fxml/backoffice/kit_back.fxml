@@ -6,7 +6,8 @@
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="tn.esprit.controllers.backoffice.KitBackController"
-      styleClass="main-content" spacing="0">
+      styleClass="main-content" spacing="0"
+      stylesheets="@../../css/kit_cards.css">
 
     <!-- Header -->
     <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="15">
@@ -29,18 +30,12 @@
                     <Region HBox.hgrow="ALWAYS"/>
                     <Button text="Exporter CSV" onAction="#exporterCSV" styleClass="btn-secondary"/>
                 </HBox>
-                <TableView fx:id="tableKits" VBox.vgrow="ALWAYS" styleClass="data-table">
-                    <columns>
-                        <TableColumn text="ID"              prefWidth="55"  fx:id="colId"/>
-                        <TableColumn text="Nom"             prefWidth="170" fx:id="colNom"/>
-                        <TableColumn text="Type"            prefWidth="100" fx:id="colType"/>
-                        <TableColumn text="Niveau"          prefWidth="90"  fx:id="colNiveau"/>
-                        <TableColumn text="Prix (TND)"      prefWidth="85"  fx:id="colPrix"/>
-                        <TableColumn text="Stock"           prefWidth="65"  fx:id="colStock"/>
-                        <TableColumn text="Produit associe" prefWidth="180" fx:id="colProduitAssocie"/>
-                    </columns>
-                    <placeholder><Label text="Aucun kit trouve" styleClass="placeholder-label"/></placeholder>
-                </TableView>
+                <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" 
+                            style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <FlowPane fx:id="gridKits" hgap="20" vgap="20" 
+                              style="-fx-background-color: transparent; -fx-padding: 10;">
+                    </FlowPane>
+                </ScrollPane>
             </VBox>
         </Tab>
 

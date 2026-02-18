@@ -11,13 +11,21 @@ import tn.esprit.MainApp;
 import tn.esprit.entities.Utilisateur;
 import tn.esprit.utils.Session;
 
+/**
+ * Contrôleur principal du front office
+ * Version: 2.0 - Avec panier persistant
+ */
 public class MainFrontController {
 
     @FXML private StackPane contentArea;
     @FXML private Label lblUserNom;
+    @FXML private Label lblBadgePanier;
     @FXML private Button btnAccueil;
     @FXML private Button btnProduits;
     @FXML private Button btnKits;
+    @FXML private Button btnEvenements;
+    @FXML private Button btnHebergement;
+    @FXML private Button btnForum;
     @FXML private Button btnReclamations;
     @FXML private Button btnPanier;
 
@@ -37,9 +45,15 @@ public class MainFrontController {
     }
     
     private void mettreAJourPanier() {
-        int nbArticles = tn.esprit.utils.Panier.getInstance().getNombreArticles();
-        if (btnPanier != null) {
-            btnPanier.setText("🛒 Panier (" + nbArticles + ")");
+        int nbArticles = tn.esprit.services.PanierService.getInstance().getNombreArticles();
+        
+        if (lblBadgePanier != null) {
+            if (nbArticles > 0) {
+                lblBadgePanier.setText(String.valueOf(nbArticles));
+                lblBadgePanier.setVisible(true);
+            } else {
+                lblBadgePanier.setVisible(false);
+            }
         }
     }
 
@@ -64,6 +78,39 @@ public class MainFrontController {
     }
 
     @FXML
+    public void afficherEvenements() {
+        activerBouton(btnEvenements);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Événements & Participation");
+        alert.setHeaderText("Module en cours de développement");
+        alert.setContentText("La section Événements & Participation sera bientôt disponible.");
+        alert.showAndWait();
+        mettreAJourPanier();
+    }
+
+    @FXML
+    public void afficherHebergement() {
+        activerBouton(btnHebergement);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Hébergement & Réservation");
+        alert.setHeaderText("Module en cours de développement");
+        alert.setContentText("La section Hébergement & Réservation sera bientôt disponible.");
+        alert.showAndWait();
+        mettreAJourPanier();
+    }
+
+    @FXML
+    public void afficherForum() {
+        activerBouton(btnForum);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Forum & Discussion");
+        alert.setHeaderText("Module en cours de développement");
+        alert.setContentText("La section Forum & Discussion sera bientôt disponible.");
+        alert.showAndWait();
+        mettreAJourPanier();
+    }
+
+    @FXML
     public void afficherReclamations() {
         activerBouton(btnReclamations);
         chargerFXML("/fxml/frontoffice/reclamations_content.fxml");
@@ -83,22 +130,31 @@ public class MainFrontController {
     
     @FXML
     public void afficherPanier() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Panier");
-        alert.setHeaderText("🛒 Votre Panier");
-        
-        int nbArticles = tn.esprit.utils.Panier.getInstance().getNombreArticles();
-        java.math.BigDecimal total = tn.esprit.utils.Panier.getInstance().getTotal();
-        
-        String contenu = String.format(
-            "Nombre d'articles: %d\n" +
-            "Total: %.2f TND\n\n" +
-            "Fonctionnalité de commande à venir...",
-            nbArticles, total
-        );
-        
-        alert.setContentText(contenu);
-        alert.showAndWait();
+        System.out.println("DEBUG: Méthode afficherPanier() appelée - Version 2.0");
+        try {
+            // Ouvrir le panier dans une nouvelle fenêtre
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/frontoffice/panier.fxml")
+            );
+            javafx.scene.Scene scene = new javafx.scene.Scene(loader.load());
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Mon Panier");
+            stage.setScene(scene);
+            stage.show();
+            
+            // Mettre à jour le compteur après fermeture
+            stage.setOnHidden(e -> mettreAJourPanier());
+            
+        } catch (Exception e) {
+            System.err.println("Erreur ouverture panier: " + e.getMessage());
+            e.printStackTrace();
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Impossible d'ouvrir le panier");
+            alert.setContentText("Erreur: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML

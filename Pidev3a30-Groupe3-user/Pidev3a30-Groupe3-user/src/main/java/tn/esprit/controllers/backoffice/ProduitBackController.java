@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Pos;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,12 +23,7 @@ public class ProduitBackController {
     // ===== TAB 1: LISTE =====
     @FXML private TextField txtRecherche;
     @FXML private ComboBox<String> comboCategorie, comboRegion;
-    @FXML private TableView<ProduitLocal> tableProduits;
-    @FXML private TableColumn<ProduitLocal, Integer> colId;
-    @FXML private TableColumn<ProduitLocal, String> colNom, colCategorie, colRegion;
-    @FXML private TableColumn<ProduitLocal, BigDecimal> colPrix;
-    @FXML private TableColumn<ProduitLocal, Integer> colStock;
-    @FXML private TableColumn<ProduitLocal, Void> colActions;
+    @FXML private FlowPane gridProduits;
     @FXML private Label lblStats;
 
     // ===== TAB 2: AJOUTER =====
@@ -59,7 +58,6 @@ public class ProduitBackController {
         produitService = new ProduitLocalService();
         produits = FXCollections.observableArrayList();
 
-        configurerTableau();
         configurerFiltres();
         configurerComboBoxes();
         configurerValidation();
@@ -72,43 +70,6 @@ public class ProduitBackController {
     }
 
     // ========== CONFIGURATION ==========
-
-    private void configurerTableau() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("idProduit"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colCategorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-        colRegion.setCellValueFactory(new PropertyValueFactory<>("region"));
-        colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-
-        // Colonne Actions avec boutons
-        colActions.setCellFactory(col -> new TableCell<>() {
-            private final Button btnModif = new Button("✏️");
-            private final Button btnSuppr = new Button("🗑️");
-            private final HBox box = new HBox(5, btnModif, btnSuppr);
-
-            {
-                btnModif.getStyleClass().add("btn-table-edit");
-                btnSuppr.getStyleClass().add("btn-table-delete");
-
-                btnModif.setOnAction(e -> {
-                    ProduitLocal p = getTableView().getItems().get(getIndex());
-                    preparerModification(p);
-                });
-
-                btnSuppr.setOnAction(e -> {
-                    ProduitLocal p = getTableView().getItems().get(getIndex());
-                    confirmerSuppression(p);
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : box);
-            }
-        });
-    }
 
     private void configurerFiltres() {
         comboCategorie.setItems(FXCollections.observableArrayList(
@@ -310,9 +271,109 @@ public class ProduitBackController {
     private void chargerProduits() {
         List<ProduitLocal> liste = produitService.afficher();
         produits.setAll(liste);
-        tableProduits.setItems(produits);
+        chargerProduitsEnCartes(produits);
         mettreAJourStats();
         mettreAJourCombosProduits();
+    }
+
+    private void chargerProduitsEnCartes(ObservableList<ProduitLocal> liste) {
+        gridProduits.getChildren().clear();
+        for (ProduitLocal p : liste) {
+            gridProduits.getChildren().add(creerCarteProduit(p));
+        }
+    }
+
+    private VBox creerCarteProduit(ProduitLocal produit) {
+        VBox card = new VBox(10);
+        card.getStyleClass().add("produit-card");
+        card.setAlignment(Pos.TOP_CENTER);
+
+        // Image
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(220);
+        imageView.setFitHeight(150);
+        imageView.setPreserveRatio(true);
+        imageView.getStyleClass().add("produit-image");
+        
+        try {
+            if (produit.getImageUrl() != null && !produit.getImageUrl().isEmpty()) {
+                imageView.setImage(new Image(produit.getImageUrl(), true));
+            } else {
+                imageView.setImage(new Image("https://via.placeholder.com/220x150?text=Pas+d'image", true));
+            }
+        } catch (Exception e) {
+            imageView.setImage(new Image("https://via.placeholder.com/220x150?text=Erreur", true));
+        }
+
+        // Nom
+        Label lblNom = new Label(produit.getNom());
+        lblNom.getStyleClass().add("produit-nom");
+        lblNom.setWrapText(true);
+        lblNom.setMaxWidth(220);
+
+        // Catégorie et Région
+        Label lblInfo = new Label(produit.getCategorie() + " • " + produit.getRegion());
+        lblInfo.getStyleClass().add("produit-categorie");
+
+        // Prix
+        Label lblPrix = new Label(String.format("%.2f TND", produit.getPrix()));
+        lblPrix.getStyleClass().add("produit-prix");
+
+        // Stock avec indicateur coloré
+        String stockText;
+        String stockStyle;
+        if (produit.getStock() == 0) {
+            stockText = "🔴 Rupture";
+            stockStyle = "stock-rupture";
+        } else if (produit.getStock() <= 10) {
+            stockText = "🟠 Stock: " + produit.getStock();
+            stockStyle = "stock-faible";
+        } else {
+            stockText = "🟢 Stock: " + produit.getStock();
+            stockStyle = "stock-ok";
+        }
+        Label lblStock = new Label(stockText);
+        lblStock.getStyleClass().addAll("produit-stock", stockStyle);
+
+        // Boutons d'action
+        Button btnModif = new Button("✏️");
+        btnModif.getStyleClass().addAll("btn-card", "btn-modifier");
+        btnModif.setOnAction(e -> preparerModification(produit));
+
+        Button btnSuppr = new Button("🗑️");
+        btnSuppr.getStyleClass().addAll("btn-card", "btn-supprimer");
+        btnSuppr.setOnAction(e -> confirmerSuppression(produit));
+
+        HBox actions = new HBox(5, btnModif, btnSuppr);
+        actions.setAlignment(Pos.CENTER);
+        actions.getStyleClass().add("card-actions");
+
+        card.getChildren().addAll(imageView, lblNom, lblInfo, lblPrix, lblStock, actions);
+        return card;
+    }
+
+    private void afficherDetailsProduit(ProduitLocal produit) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Détails du Produit");
+        alert.setHeaderText(produit.getNom());
+        
+        String details = String.format(
+            "ID: %d\n" +
+            "Catégorie: %s\n" +
+            "Région: %s\n" +
+            "Prix: %.2f TND\n" +
+            "Stock: %d unités\n\n" +
+            "Description:\n%s",
+            produit.getIdProduit(),
+            produit.getCategorie(),
+            produit.getRegion(),
+            produit.getPrix(),
+            produit.getStock(),
+            produit.getDescription() != null ? produit.getDescription() : "Aucune description"
+        );
+        
+        alert.setContentText(details);
+        alert.showAndWait();
     }
 
     private void appliquerFiltres() {
@@ -334,7 +395,7 @@ public class ProduitBackController {
             }
         }
 
-        tableProduits.setItems(filtres);
+        chargerProduitsEnCartes(filtres);
         lblStats.setText("Affichés: " + filtres.size() + " / Total: " + liste.size() + " produits");
     }
 

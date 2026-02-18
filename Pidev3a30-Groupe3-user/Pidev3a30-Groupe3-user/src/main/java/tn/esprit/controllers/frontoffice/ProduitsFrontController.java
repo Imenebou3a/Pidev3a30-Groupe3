@@ -302,12 +302,21 @@ public class ProduitsFrontController {
      * Ajouter un produit au panier
      */
     private void ajouterAuPanier(ProduitLocal produit) {
-        tn.esprit.utils.Panier.getInstance().ajouterProduit(produit, 1);
+        tn.esprit.services.PanierService panier = tn.esprit.services.PanierService.getInstance();
+        
+        panier.ajouterProduit(
+            produit.getIdProduit(),
+            produit.getNom(),
+            produit.getPrix(),
+            produit.getCategorie() + " • " + produit.getRegion(),
+            produit.getImageUrl()
+        );
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Panier");
         alert.setHeaderText("✓ Produit ajouté !");
-        alert.setContentText(produit.getNom() + " a été ajouté à votre panier.");
+        alert.setContentText(produit.getNom() + " a été ajouté à votre panier.\n\n" +
+                           "Articles dans le panier: " + panier.getNombreArticles());
         alert.showAndWait();
     }
 

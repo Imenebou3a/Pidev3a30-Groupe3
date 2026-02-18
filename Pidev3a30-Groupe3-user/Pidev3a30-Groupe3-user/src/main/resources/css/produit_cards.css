@@ -1,0 +1,97 @@
+/* ===== CARTES PRODUITS ===== */
+.produit-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 15;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 350px;
+}
+
+.produit-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-cursor: hand;
+}
+
+.produit-image {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 8px;
+}
+
+.produit-nom {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+}
+
+.produit-categorie {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.produit-prix {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.produit-stock {
+    -fx-font-size: 13px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 15px;
+}
+
+.stock-ok {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.stock-faible {
+    -fx-background-color: #fff3cd;
+    -fx-text-fill: #856404;
+}
+
+.stock-rupture {
+    -fx-background-color: #f8d7da;
+    -fx-text-fill: #721c24;
+}
+
+.card-actions {
+    -fx-spacing: 5;
+}
+
+.btn-card {
+    -fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.btn-voir {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.btn-voir:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-modifier {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+
+.btn-modifier:hover {
+    -fx-background-color: #229954;
+}
+
+.btn-supprimer {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.btn-supprimer:hover {
+    -fx-background-color: #c0392b;
+}

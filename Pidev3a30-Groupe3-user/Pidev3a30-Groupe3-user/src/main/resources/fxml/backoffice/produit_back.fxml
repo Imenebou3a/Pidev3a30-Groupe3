@@ -6,7 +6,8 @@
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="tn.esprit.controllers.backoffice.ProduitBackController"
-      styleClass="main-content" spacing="0">
+      styleClass="main-content" spacing="0"
+      stylesheets="@../../css/produit_cards.css">
 
     <!-- Header -->
     <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="15">
@@ -36,21 +37,14 @@
                     <Button text="Exporter CSV" onAction="#exporterCSV" styleClass="btn-secondary"/>
                 </HBox>
 
-                <!-- Tableau -->
-                <TableView fx:id="tableProduits" VBox.vgrow="ALWAYS" styleClass="data-table">
-                    <columns>
-                        <TableColumn text="ID" prefWidth="60" fx:id="colId"/>
-                        <TableColumn text="Nom" prefWidth="200" fx:id="colNom"/>
-                        <TableColumn text="Catégorie" prefWidth="120" fx:id="colCategorie"/>
-                        <TableColumn text="Région" prefWidth="120" fx:id="colRegion"/>
-                        <TableColumn text="Prix (TND)" prefWidth="100" fx:id="colPrix"/>
-                        <TableColumn text="Stock" prefWidth="80" fx:id="colStock"/>
-                        <TableColumn text="Actions" prefWidth="200" fx:id="colActions"/>
-                    </columns>
-                    <placeholder>
-                        <Label text="Aucun produit trouvé" styleClass="placeholder-label"/>
-                    </placeholder>
-                </TableView>
+                <!-- Vue en Grille avec Cartes -->
+                <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" 
+                            style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <FlowPane fx:id="gridProduits" hgap="20" vgap="20" 
+                              style="-fx-background-color: transparent; -fx-padding: 10;">
+                        <!-- Les cartes seront ajoutées dynamiquement par le contrôleur -->
+                    </FlowPane>
+                </ScrollPane>
             </VBox>
         </Tab>
 

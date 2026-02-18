@@ -19,6 +19,7 @@ public class MainBackController {
     @FXML private Button btnDashboard;
     @FXML private Button btnProduits;
     @FXML private Button btnKits;
+    @FXML private Button btnCommandes;
     @FXML private Button btnUtilisateurs;
     @FXML private Button btnReclamations;
     @FXML private Button btnProfil;
@@ -51,7 +52,7 @@ public class MainBackController {
 
         try {
             // Remove active class from all sidebar buttons
-            for (Button b : new Button[]{btnDashboard, btnProduits, btnKits, btnUtilisateurs, btnReclamations}) {
+            for (Button b : new Button[]{btnDashboard, btnProduits, btnKits, btnCommandes, btnUtilisateurs, btnReclamations}) {
                 if (b != null) {
                     b.getStyleClass().remove("nav-btn-active");
                     if (!b.getStyleClass().contains("nav-btn"))
@@ -82,6 +83,10 @@ public class MainBackController {
 
     @FXML private void chargerKits() {
         chargerPage("/fxml/backoffice/kit_back.fxml", btnKits);
+    }
+
+    @FXML private void chargerCommandes() {
+        chargerPage("/fxml/backoffice/commandes_back.fxml", btnCommandes);
     }
 
     @FXML private void chargerUtilisateurs() {

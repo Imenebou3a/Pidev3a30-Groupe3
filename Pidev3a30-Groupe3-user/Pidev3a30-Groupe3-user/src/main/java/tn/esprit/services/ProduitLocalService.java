@@ -1,13 +1,14 @@
 package tn.esprit.services;
 
 import tn.esprit.entities.ProduitLocal;
+import tn.esprit.interfaces.IProduitLocal;
 import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitLocalService {
+public class ProduitLocalService implements IProduitLocal {
 
     private Connection connection;
 
@@ -124,6 +125,19 @@ public class ProduitLocalService {
             }
         } catch (SQLException e) {
             System.err.println("Erreur filtre region: " + e.getMessage());
+        }
+        return produits;
+    }
+
+    @Override
+    public List<ProduitLocal> getProduitsEnStock() {
+        List<ProduitLocal> produits = new ArrayList<>();
+        String sql = "SELECT * FROM produit_local WHERE stock > 0 ORDER BY nom";
+        try (Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) produits.add(mapResultSet(rs));
+        } catch (SQLException e) {
+            System.err.println("Erreur produits en stock: " + e.getMessage());
         }
         return produits;
     }

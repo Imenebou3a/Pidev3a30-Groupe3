@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.controllers.backoffice.CommandeBackController"
+      stylesheets="@../../css/commandes_back.css"
+      spacing="20" style="-fx-background-color: #f5f5f5;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="📦 Gestion des Commandes" styleClass="titre-page"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="🔄 Actualiser" onAction="#actualiser" styleClass="btn-actualiser"/>
+    </HBox>
+    
+    <!-- Statistiques -->
+    <HBox spacing="15" styleClass="stats-container">
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Commandes" styleClass="stat-label"/>
+            <Label fx:id="lblTotalCommandes" text="0" styleClass="stat-value"/>
+        </VBox>
+        
+        <VBox styleClass="stat-card stat-warning" HBox.hgrow="ALWAYS">
+            <Label text="En Attente" styleClass="stat-label"/>
+            <Label fx:id="lblCommandesEnAttente" text="0" styleClass="stat-value"/>
+        </VBox>
+        
+        <VBox styleClass="stat-card stat-success" HBox.hgrow="ALWAYS">
+            <Label text="Confirmées" styleClass="stat-label"/>
+            <Label fx:id="lblCommandesConfirmees" text="0" styleClass="stat-value"/>
+        </VBox>
+        
+        <VBox styleClass="stat-card stat-info" HBox.hgrow="ALWAYS">
+            <Label text="Expédiées" styleClass="stat-label"/>
+            <Label fx:id="lblCommandesExpediees" text="0" styleClass="stat-value"/>
+        </VBox>
+    </HBox>
+    
+    <!-- Filtres -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="filtres-container">
+        <Label text="🔍 Rechercher:" styleClass="label-filtre"/>
+        <TextField fx:id="txtRecherche" promptText="Nom, email ou numéro..." 
+                   prefWidth="300" onKeyReleased="#rechercherCommandes"/>
+        
+        <Label text="📊 Statut:" styleClass="label-filtre"/>
+        <ComboBox fx:id="cbStatut" prefWidth="150" onAction="#rechercherCommandes"/>
+        
+        <Button text="↺ Réinitialiser" onAction="#reinitialiserFiltres" styleClass="btn-reset"/>
+    </HBox>
+    
+    <!-- Grille des commandes en cartes -->
+    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" 
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <FlowPane fx:id="gridCommandes" hgap="20" vgap="20" 
+                  style="-fx-background-color: transparent; -fx-padding: 10;">
+            <!-- Les cartes seront ajoutées dynamiquement par le contrôleur -->
+        </FlowPane>
+    </ScrollPane>
+    
+</VBox>

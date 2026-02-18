@@ -30,20 +30,34 @@
             <!-- Navigation Bar -->
             <HBox alignment="CENTER_LEFT" spacing="0" style="-fx-background-color: white; -fx-padding: 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
                 <Button fx:id="btnAccueil" text="🏠 Accueil" onAction="#afficherAccueil" 
-                        styleClass="front-nav-btn, front-nav-btn-active" prefHeight="50" prefWidth="180"/>
-                <Button fx:id="btnProduits" text="🛍️ Produits Locaux" onAction="#afficherProduits" 
-                        styleClass="front-nav-btn" prefHeight="50" prefWidth="180"/>
-                <Button fx:id="btnKits" text="🎨 Kits Hobbies" onAction="#afficherKits" 
-                        styleClass="front-nav-btn" prefHeight="50" prefWidth="180"/>
-                <Button fx:id="btnReclamations" text="📋 Mes Réclamations" onAction="#afficherReclamations" 
-                        styleClass="front-nav-btn" prefHeight="50" prefWidth="180"/>
+                        styleClass="front-nav-btn, front-nav-btn-active" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnProduits" text="🛍️ Produits" onAction="#afficherProduits" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnKits" text="🎨 Kits" onAction="#afficherKits" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnEvenements" text="🎉 Événements" onAction="#afficherEvenements" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnHebergement" text="🏨 Hébergement" onAction="#afficherHebergement" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnForum" text="💬 Forum" onAction="#afficherForum" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnReclamations" text="📋 Réclamations" onAction="#afficherReclamations" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
                 
                 <Region HBox.hgrow="ALWAYS"/>
                 
-                <Button fx:id="btnPanier" text="🛒 Panier (0)" onAction="#afficherPanier"
-                        style="-fx-background-color: #1a7a7a; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);">
+                <!-- Bouton Panier avec Badge -->
+                <StackPane>
+                    <Button fx:id="btnPanier" text="🛒 Panier" onAction="#afficherPanier"
+                            style="-fx-background-color: #1a7a7a; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);">
+                    </Button>
+                    <Label fx:id="lblBadgePanier" text="0" visible="false"
+                           style="-fx-background-color: #D94F1E; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 3 7; -fx-background-radius: 10px; -fx-min-width: 20px; -fx-alignment: center;"
+                           StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="-5" right="-5"/></StackPane.margin>
+                    </Label>
                     <HBox.margin><Insets right="20"/></HBox.margin>
-                </Button>
+                </StackPane>
             </HBox>
         </VBox>
     </top>

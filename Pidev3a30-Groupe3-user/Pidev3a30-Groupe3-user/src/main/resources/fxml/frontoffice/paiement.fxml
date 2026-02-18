@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.frontoffice.PaiementController"
+            stylesheets="@../../css/paiement.css"
+            prefWidth="1000" prefHeight="700">
+    
+    <!-- En-tête -->
+    <top>
+        <VBox styleClass="header-paiement">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="💳" styleClass="paiement-icon"/>
+                <Label text="Paiement Sécurisé" styleClass="titre-paiement"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Contenu principal -->
+    <center>
+        <HBox spacing="30" styleClass="container-principal">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+            
+            <!-- Formulaire de paiement -->
+            <VBox spacing="20" styleClass="formulaire-paiement" HBox.hgrow="ALWAYS">
+                <Label text="Informations de livraison" styleClass="section-titre"/>
+                
+                <VBox spacing="8">
+                    <Label text="Nom complet *" styleClass="label-champ"/>
+                    <TextField fx:id="txtNom" promptText="Entrez votre nom complet" 
+                               styleClass="champ-texte"/>
+                </VBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Email *" styleClass="label-champ"/>
+                        <TextField fx:id="txtEmail" promptText="exemple@email.com" 
+                                   styleClass="champ-texte"/>
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Téléphone *" styleClass="label-champ"/>
+                        <TextField fx:id="txtTelephone" promptText="+216 XX XXX XXX" 
+                                   styleClass="champ-texte"/>
+                    </VBox>
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Adresse de livraison *" styleClass="label-champ"/>
+                    <TextArea fx:id="txtAdresse" promptText="Rue, ville, code postal" 
+                              styleClass="champ-texte" prefRowCount="3"/>
+                </VBox>
+                
+                <Separator/>
+                
+                <Label text="Informations de paiement" styleClass="section-titre"/>
+                
+                <VBox spacing="8">
+                    <Label text="Numéro de carte *" styleClass="label-champ"/>
+                    <TextField fx:id="txtNumeroCarte" promptText="XXXX XXXX XXXX XXXX" 
+                               styleClass="champ-texte" prefWidth="300"/>
+                </VBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8">
+                        <Label text="Date d'expiration *" styleClass="label-champ"/>
+                        <TextField fx:id="txtExpiration" promptText="MM/AA" 
+                                   styleClass="champ-texte" prefWidth="120"/>
+                    </VBox>
+                    <VBox spacing="8">
+                        <Label text="CVV *" styleClass="label-champ"/>
+                        <TextField fx:id="txtCVV" promptText="XXX" 
+                                   styleClass="champ-texte" prefWidth="100"/>
+                    </VBox>
+                </HBox>
+                
+                <HBox spacing="15" alignment="CENTER" styleClass="box-actions-paiement">
+                    <Button text="← Retour au panier" onAction="#retourPanier" 
+                            styleClass="btn-retour"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnPayer" text="Payer maintenant" 
+                            styleClass="btn-payer"/>
+                </HBox>
+            </VBox>
+            
+            <!-- Résumé de la commande -->
+            <VBox spacing="15" styleClass="resume-commande" prefWidth="350">
+                <Label text="Résumé de la commande" styleClass="resume-titre"/>
+                
+                <ScrollPane fitToWidth="true" styleClass="scroll-resume" 
+                            vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" prefHeight="300">
+                    <VBox fx:id="containerResume" spacing="10" styleClass="container-items">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </VBox>
+                </ScrollPane>
+                
+                <Separator/>
+                
+                <HBox alignment="CENTER">
+                    <Label text="Sous-total:" styleClass="label-resume"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblSousTotal" text="0.00 TND" styleClass="montant-resume"/>
+                </HBox>
+                
+                <HBox alignment="CENTER">
+                    <Label text="Frais de livraison:" styleClass="label-resume"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblLivraison" text="7.00 TND" styleClass="montant-resume"/>
+                </HBox>
+                
+                <Separator/>
+                
+                <HBox alignment="CENTER" styleClass="box-total-final">
+                    <Label text="Total:" styleClass="label-total-final"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblTotalFinal" text="0.00 TND" styleClass="montant-total-final"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

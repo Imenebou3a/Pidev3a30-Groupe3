@@ -333,12 +333,21 @@ public class KitFrontController {
      * Ajouter un kit au panier
      */
     private void ajouterAuPanier(KitHobbies kit) {
-        tn.esprit.utils.Panier.getInstance().ajouterKit(kit, 1);
+        tn.esprit.services.PanierService panier = tn.esprit.services.PanierService.getInstance();
+        
+        panier.ajouterKit(
+            kit.getIdKit(),
+            kit.getNomKit(),
+            kit.getPrix(),
+            kit.getTypeArtisanat() + " • " + kit.getNiveauDifficulte(),
+            kit.getImageUrl()
+        );
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Panier");
         alert.setHeaderText("✓ Kit ajouté !");
-        alert.setContentText(kit.getNomKit() + " a été ajouté à votre panier.");
+        alert.setContentText(kit.getNomKit() + " a été ajouté à votre panier.\n\n" +
+                           "Articles dans le panier: " + panier.getNombreArticles());
         alert.showAndWait();
     }
 
@@ -384,13 +393,22 @@ public class KitFrontController {
      */
     private void afficherMessageCommande(KitHobbies kit) {
         // Ajouter au panier
-        tn.esprit.utils.Panier.getInstance().ajouterKit(kit, 1);
+        tn.esprit.services.PanierService panier = tn.esprit.services.PanierService.getInstance();
+        
+        panier.ajouterKit(
+            kit.getIdKit(),
+            kit.getNomKit(),
+            kit.getPrix(),
+            kit.getTypeArtisanat() + " • " + kit.getNiveauDifficulte(),
+            kit.getImageUrl()
+        );
         
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setTitle("Panier");
         confirmation.setHeaderText("✓ Kit ajouté !");
         confirmation.setContentText("Le kit \"" + kit.getNomKit() +
-                "\" a été ajouté à votre panier.");
+                "\" a été ajouté à votre panier.\n\n" +
+                "Articles dans le panier: " + panier.getNombreArticles());
         confirmation.showAndWait();
     }
 

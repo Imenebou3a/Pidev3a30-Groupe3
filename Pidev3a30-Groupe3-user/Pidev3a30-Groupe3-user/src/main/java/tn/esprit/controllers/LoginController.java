@@ -66,6 +66,9 @@ public class LoginController {
 
             if (user != null) {
                 Session.getInstance().setUtilisateurConnecte(user);
+                
+                // Charger le panier de l'utilisateur
+                tn.esprit.services.PanierService.getInstance().chargerPanierUtilisateur();
 
                 // ─── REDIRECTION SELON LE RÔLE ───
                 if ("ADMIN".equals(user.getRole())) {

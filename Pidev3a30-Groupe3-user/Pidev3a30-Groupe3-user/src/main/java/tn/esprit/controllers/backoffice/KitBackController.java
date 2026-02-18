@@ -10,6 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Pos;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -21,14 +26,7 @@ import java.util.Optional;
 public class KitBackController {
 
     // ===== TAB 1 - LISTE =====
-    @FXML private TableView<KitHobbies>            tableKits;
-    @FXML private TableColumn<KitHobbies, Integer> colId;
-    @FXML private TableColumn<KitHobbies, String>  colNom;
-    @FXML private TableColumn<KitHobbies, String>  colType;
-    @FXML private TableColumn<KitHobbies, String>  colNiveau;
-    @FXML private TableColumn<KitHobbies, BigDecimal> colPrix;
-    @FXML private TableColumn<KitHobbies, Integer> colStock;
-    @FXML private TableColumn<KitHobbies, String>  colProduitAssocie; // nouvelle colonne
+    @FXML private FlowPane gridKits;
     @FXML private TextField        txtRecherche;
     @FXML private ComboBox<String> comboType;
     @FXML private ComboBox<String> comboNiveau;
@@ -109,8 +107,7 @@ public class KitBackController {
             kitService     = new KitHobbiesService();
             produitService = new ProduitLocalService();
 
-            chargerProduits();          // doit être fait AVANT initialiserComboBox
-            configurerTableView();
+            chargerProduits();
             initialiserComboBox();
             chargerKits();
             mettreAJourStatistiques();
@@ -144,54 +141,6 @@ public class KitBackController {
                 super.updateItem(p, empty);
                 setText(empty || p == null ? "Selectionner le produit associe"
                         : "#" + p.getIdProduit() + " — " + p.getNom() + " (" + p.getRegion() + ")");
-            }
-        });
-    }
-
-    // ─────────────────────────────────────────────
-    //  TABLE VIEW
-    // ─────────────────────────────────────────────
-    private void configurerTableView() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("idKit"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nomKit"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("typeArtisanat"));
-        colNiveau.setCellValueFactory(new PropertyValueFactory<>("niveauDifficulte"));
-        colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-
-        // Colonne "Produit associe" : retrouve le nom du produit depuis son ID
-        colProduitAssocie.setCellValueFactory(cd -> {
-            int idProduit = cd.getValue().getIdProduit();
-            String nomProduit = produitsObs.stream()
-                    .filter(p -> p.getIdProduit() == idProduit)
-                    .map(p -> p.getNom() + " (" + p.getRegion() + ")")
-                    .findFirst()
-                    .orElse("—");
-            return new javafx.beans.property.SimpleStringProperty(nomProduit);
-        });
-
-        colNiveau.setCellFactory(col -> new TableCell<>() {
-            @Override protected void updateItem(String v, boolean empty) {
-                super.updateItem(v, empty);
-                if (empty || v == null) { setText(null); setStyle(""); return; }
-                setText(v);
-                setStyle(switch (v) {
-                    case "Facile"    -> "-fx-text-fill:#1A7A7A;-fx-font-weight:bold;";
-                    case "Moyen"     -> "-fx-text-fill:#c4953a;-fx-font-weight:bold;";
-                    case "Difficile" -> "-fx-text-fill:#D94F1E;-fx-font-weight:bold;";
-                    default -> "";
-                });
-            }
-        });
-
-        colStock.setCellFactory(col -> new TableCell<>() {
-            @Override protected void updateItem(Integer v, boolean empty) {
-                super.updateItem(v, empty);
-                if (empty || v == null) { setText(null); setStyle(""); return; }
-                setText(v.toString());
-                setStyle(v == 0 ? "-fx-text-fill:#D94F1E;-fx-font-weight:bold;"
-                        : v < 5  ? "-fx-text-fill:#c4953a;-fx-font-weight:bold;"
-                        :          "-fx-text-fill:#1A7A7A;-fx-font-weight:bold;");
             }
         });
     }
@@ -305,7 +254,140 @@ public class KitBackController {
     //  TAB 1 — LISTE
     // ─────────────────────────────────────────────
     private void chargerKits() {
-        tableKits.setItems(FXCollections.observableArrayList(kitService.afficher()));
+        chargerKitsEnCartes(FXCollections.observableArrayList(kitService.afficher()));
+    }
+
+    private void chargerKitsEnCartes(ObservableList<KitHobbies> liste) {
+        gridKits.getChildren().clear();
+        for (KitHobbies k : liste) {
+            gridKits.getChildren().add(creerCarteKit(k));
+        }
+    }
+
+    private VBox creerCarteKit(KitHobbies kit) {
+        VBox card = new VBox(10);
+        card.getStyleClass().add("kit-card");
+        card.setAlignment(Pos.TOP_CENTER);
+
+        // Image
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(220);
+        imageView.setFitHeight(150);
+        imageView.setPreserveRatio(true);
+        imageView.getStyleClass().add("kit-image");
+        
+        try {
+            if (kit.getImageUrl() != null && !kit.getImageUrl().isEmpty()) {
+                imageView.setImage(new Image(kit.getImageUrl(), true));
+            } else {
+                imageView.setImage(new Image("https://via.placeholder.com/220x150?text=Pas+d'image", true));
+            }
+        } catch (Exception e) {
+            imageView.setImage(new Image("https://via.placeholder.com/220x150?text=Erreur", true));
+        }
+
+        // Nom
+        Label lblNom = new Label(kit.getNomKit());
+        lblNom.getStyleClass().add("kit-nom");
+        lblNom.setWrapText(true);
+        lblNom.setMaxWidth(220);
+
+        // Type
+        Label lblType = new Label(kit.getTypeArtisanat());
+        lblType.getStyleClass().add("kit-type");
+
+        // Difficulté avec badge coloré
+        Label lblDifficulte = new Label(kit.getNiveauDifficulte());
+        lblDifficulte.getStyleClass().add("kit-difficulte");
+        switch (kit.getNiveauDifficulte()) {
+            case "Facile" -> lblDifficulte.getStyleClass().add("difficulte-facile");
+            case "Moyen" -> lblDifficulte.getStyleClass().add("difficulte-moyen");
+            case "Difficile" -> lblDifficulte.getStyleClass().add("difficulte-difficile");
+        }
+
+        // Prix
+        Label lblPrix = new Label(String.format("%.2f TND", kit.getPrix()));
+        lblPrix.getStyleClass().add("kit-prix");
+
+        // Stock avec indicateur coloré
+        String stockText;
+        String stockStyle;
+        if (kit.getStock() == 0) {
+            stockText = "🔴 Rupture";
+            stockStyle = "stock-rupture";
+        } else if (kit.getStock() < 5) {
+            stockText = "🟠 Stock: " + kit.getStock();
+            stockStyle = "stock-faible";
+        } else {
+            stockText = "🟢 Stock: " + kit.getStock();
+            stockStyle = "stock-ok";
+        }
+        Label lblStock = new Label(stockText);
+        lblStock.getStyleClass().addAll("kit-stock", stockStyle);
+
+        // Produit associé
+        String nomProduit = produitsObs.stream()
+                .filter(p -> p.getIdProduit() == kit.getIdProduit())
+                .map(p -> "📦 " + p.getNom())
+                .findFirst().orElse("📦 Produit inconnu");
+        Label lblProduit = new Label(nomProduit);
+        lblProduit.getStyleClass().add("kit-type");
+        lblProduit.setWrapText(true);
+        lblProduit.setMaxWidth(220);
+
+        // Boutons d'action
+        Button btnModif = new Button("✏️");
+        btnModif.getStyleClass().addAll("btn-card", "btn-modifier");
+        btnModif.setOnAction(e -> {
+            comboModifierKit.setValue(kit);
+            chargerKitPourModification();
+        });
+
+        Button btnSuppr = new Button("🗑️");
+        btnSuppr.getStyleClass().addAll("btn-card", "btn-supprimer");
+        btnSuppr.setOnAction(e -> {
+            comboSupprimerKit.setValue(kit);
+            afficherDetailsKitASupprimer();
+            supprimerKit();
+        });
+
+        HBox actions = new HBox(5, btnModif, btnSuppr);
+        actions.setAlignment(Pos.CENTER);
+        actions.getStyleClass().add("card-actions");
+
+        card.getChildren().addAll(imageView, lblNom, lblType, lblDifficulte, lblPrix, lblStock, lblProduit, actions);
+        return card;
+    }
+
+    private void afficherDetailsKit(KitHobbies kit) {
+        String nomProduit = produitsObs.stream()
+                .filter(p -> p.getIdProduit() == kit.getIdProduit())
+                .map(p -> p.getNom() + " (" + p.getRegion() + ")")
+                .findFirst().orElse("Produit inconnu");
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Détails du Kit");
+        alert.setHeaderText(kit.getNomKit());
+        
+        String details = String.format(
+            "ID: %d\n" +
+            "Type: %s\n" +
+            "Niveau: %s\n" +
+            "Prix: %.2f TND\n" +
+            "Stock: %d unités\n" +
+            "Produit associé: %s\n\n" +
+            "Description:\n%s",
+            kit.getIdKit(),
+            kit.getTypeArtisanat(),
+            kit.getNiveauDifficulte(),
+            kit.getPrix(),
+            kit.getStock(),
+            nomProduit,
+            kit.getDescription() != null ? kit.getDescription() : "Aucune description"
+        );
+        
+        alert.setContentText(details);
+        alert.showAndWait();
     }
 
     @FXML private void reinitialiserFiltres() {
@@ -319,7 +401,7 @@ public class KitBackController {
         String q  = txtRecherche.getText().trim().toLowerCase();
         String tp = comboType.getValue();
         String nv = comboNiveau.getValue();
-        tableKits.setItems(FXCollections.observableArrayList(
+        chargerKitsEnCartes(FXCollections.observableArrayList(
                 kitService.afficher().stream()
                         .filter(k -> q.isEmpty() || k.getNomKit().toLowerCase().contains(q))
                         .filter(k -> tp == null || tp.equals("Tous") || tp.equals(k.getTypeArtisanat()))
@@ -333,7 +415,7 @@ public class KitBackController {
             fc.setTitle("Exporter en CSV");
             fc.setInitialFileName("kits_hobbies.csv");
             fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
-            File file = fc.showSaveDialog(tableKits.getScene().getWindow());
+            File file = fc.showSaveDialog(gridKits.getScene().getWindow());
             if (file == null) return;
             try (PrintWriter w = new PrintWriter(file, "UTF-8")) {
                 w.println("ID,Nom,Type,Niveau,Prix,Stock,Produit Associe,Description");

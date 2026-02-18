@@ -44,6 +44,11 @@
                             styleClass="nav-btn"
                             maxWidth="Infinity"/>
 
+                    <Button fx:id="btnCommandes" text="📦 Commandes"
+                            onAction="#chargerCommandes"
+                            styleClass="nav-btn"
+                            maxWidth="Infinity"/>
+
                     <Button fx:id="btnUtilisateurs" text="  Utilisateurs"
                             onAction="#chargerUtilisateurs"
                             styleClass="nav-btn"
