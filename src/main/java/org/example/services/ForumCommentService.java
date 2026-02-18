@@ -45,7 +45,7 @@ public class ForumCommentService {
     }
 
     public ForumComment create(ForumComment comment) {
-        String sql = "INSERT INTO " + TABLE + " (post_id, author_id, parent_comment_id, content, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + TABLE + " (post_id, user_id, parent_comment_id, content, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, comment.getPostId());
@@ -96,7 +96,7 @@ public class ForumCommentService {
         ForumComment c = new ForumComment();
         c.setId(rs.getInt("id"));
         c.setPostId(rs.getInt("post_id"));
-        c.setAuthorId(rs.getObject("author_id", Integer.class));
+        c.setAuthorId(rs.getObject("user_id", Integer.class));  // fixed: was "author_id"
         c.setParentCommentId(rs.getObject("parent_comment_id", Integer.class));
         c.setContent(rs.getString("content"));
         c.setCreatedAt(rs.getObject("created_at", LocalDateTime.class));

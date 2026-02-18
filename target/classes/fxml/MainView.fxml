@@ -7,30 +7,65 @@
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controllers.MainController" fx:id="mainContainer" styleClass="main-content">
     <top>
-        <VBox styleClass="header-container">
-            <HBox styleClass="header-bar">
-                <!-- Logo and App Title -->
-                <HBox styleClass="logo-container" spacing="15">
-                    <ImageView styleClass="app-logo" preserveRatio="true" fitWidth="250" fitHeight="250">
-                        <Image url="@/logo.png"/>
-                    </ImageView>
-                    <VBox alignment="CENTER_LEFT" spacing="2">
-                        <Label text="Lammetna" styleClass="app-title"/>
-                        <Label text="Discover Tunisia's Hidden Gems" styleClass="app-subtitle"/>
-                    </VBox>
+        <!-- Artisanal-Modern Header with Popup Navigation -->
+        <HBox styleClass="lammetna-header" alignment="CENTER_RIGHT" spacing="0">
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnProfileMenu" styleClass="header-username" text="Admin Lammetna">
+                <graphic>
+                    <StackPane styleClass="header-avatar">
+                        <Label text="AL" styleClass="header-avatar-initials"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
+    <left>
+        <!-- Sidebar Navigation -->
+        <VBox styleClass="sidebar-container" spacing="0">
+            <!-- Brand Identity Section -->
+            <VBox styleClass="sidebar-logo-block" alignment="CENTER" spacing="6">
+                <ImageView styleClass="sidebar-logo" fitWidth="200" fitHeight="200" preserveRatio="true">
+                    <Image url="@/logo.png"/>
+                </ImageView>
+                <Label text="LAMMETNA" styleClass="sidebar-app-name"/>
+                <Label text="Admin Panel" styleClass="sidebar-admin-label"/>
+            </VBox>
+            <Separator styleClass="sidebar-separator"/>
+            <!-- Main Navigation -->
+            <Label text="MENU PRINCIPAL" styleClass="sidebar-section-header"/>
+            <VBox styleClass="sidebar-menu" spacing="2">
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="📊" styleClass="sidebar-menu-icon"/>
+                    <Label text="Dashboard" styleClass="sidebar-menu-label"/>
                 </HBox>
-                
-                <Region HBox.hgrow="ALWAYS"/>
-                
-                <!-- Navigation Buttons -->
-                <HBox spacing="12" alignment="CENTER_RIGHT">
-                    <Button text="🗺 Explore Posts" fx:id="btnPosts" onAction="#loadPostList" styleClass="nav-btn"/>
-                    <Button text="✍ Share Experience" fx:id="btnCreatePost" onAction="#loadCreatePost" styleClass="nav-btn"/>
-                    <Button text="⚙ Admin Panel" fx:id="btnBackoffice" onAction="#loadBackoffice" styleClass="nav-btn nav-btn-admin"/>
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="🌿" styleClass="sidebar-menu-icon"/>
+                    <Label text="Produits Locaux" styleClass="sidebar-menu-label"/>
                 </HBox>
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="🧠" styleClass="sidebar-menu-icon"/>
+                    <Label text="Kits Hobbies" styleClass="sidebar-menu-label"/>
+                </HBox>
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="⭐" styleClass="sidebar-menu-icon"/>
+                    <Label text="Événements" styleClass="sidebar-menu-label"/>
+                </HBox>
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="🏠" styleClass="sidebar-menu-icon"/>
+                    <Label text="Hébergement" styleClass="sidebar-menu-label"/>
+                </HBox>
+                <HBox styleClass="sidebar-menu-item">
+                    <Label text="💬" styleClass="sidebar-menu-icon"/>
+                    <Label text="Forum" styleClass="sidebar-menu-label"/>
+                </HBox>
+            </VBox>
+            <Label text="VISITEUR" styleClass="sidebar-section-header"/>
+            <HBox styleClass="sidebar-menu-item">
+                <Label text="🏬" styleClass="sidebar-menu-icon"/>
+                <Label text="Boutique" styleClass="sidebar-menu-label"/>
             </HBox>
         </VBox>
-    </top>
+    </left>
     <center>
         <VBox/>
     </center>

@@ -1,4 +1,133 @@
 /* ============================================
+   ARTISANAL-MODERN HEADER & SIDEBAR
+   ============================================ */
+
+.lammetna-header {
+    -fx-background-color: #fff;
+    -fx-padding: 0 38 0 0;
+    -fx-min-height: 62px;
+    -fx-max-height: 62px;
+    -fx-border-color: #e8d5bb transparent transparent transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-effect: dropshadow(gaussian, #0000000A, 8, 0, 0, 2);
+}
+.header-username {
+    -fx-font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #2d3748;
+    -fx-padding: 0 18 0 0;
+}
+.header-avatar {
+    -fx-background-color: #C85A3C;
+    -fx-background-radius: 50%;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-max-width: 38px;
+    -fx-max-height: 38px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, #C85A3C33, 4, 0, 0, 1);
+}
+.header-avatar-initials {
+    -fx-font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #fff;
+}
+
+.sidebar-container {
+    -fx-background-color: #2D5A56;
+    -fx-min-width: 230px;
+    -fx-max-width: 230px;
+    -fx-pref-width: 230px;
+    -fx-padding: 0 0 0 0;
+    -fx-alignment: top-center;
+    -fx-effect: dropshadow(gaussian, #0000000A, 8, 0, 2, 0);
+}
+.sidebar-logo-block {
+    -fx-padding: 32 0 10 0;
+    -fx-alignment: center;
+}
+.sidebar-logo {
+    -fx-effect: dropshadow(gaussian, #00000022, 4, 0, 0, 2);
+}
+.sidebar-app-name {
+    -fx-font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #fff;
+    -fx-letter-spacing: 1.5px;
+}
+.sidebar-admin-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #608B87;
+    -fx-font-weight: 600;
+    -fx-padding: 0 0 0 0;
+}
+.sidebar-separator {
+    -fx-background-color: #608B87;
+    -fx-opacity: 0.18;
+    -fx-padding: 0 0 0 0;
+}
+.sidebar-section-header {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #8bb6b1;
+    -fx-padding: 18 0 6 24;
+    -fx-letter-spacing: 1.2px;
+}
+.sidebar-menu {
+    -fx-padding: 0 0 0 0;
+}
+.sidebar-menu-item {
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 18;
+    -fx-min-height: 38px;
+    -fx-spacing: 12;
+    -fx-background-color: transparent;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-transition: background-color 0.2s;
+}
+.sidebar-menu-item:hover {
+    -fx-background-color: #1B7B7E33;
+}
+.sidebar-menu-item-active {
+    -fx-background-color: #C85A3C;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.sidebar-menu-item-active .sidebar-menu-label,
+.sidebar-menu-item-active .sidebar-menu-icon {
+    -fx-text-fill: #fff;
+    -fx-font-weight: 700;
+}
+.sidebar-menu-icon {
+    -fx-font-size: 18px;
+    -fx-text-fill: #e89057;
+    -fx-padding: 0 8 0 0;
+}
+.sidebar-menu-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #f5e6d3;
+    -fx-font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
+.sidebar-menu-item-boutique {
+    -fx-background-color: #fff;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-margin: 0 0 18 0;
+}
+.sidebar-menu-item-boutique .sidebar-menu-label,
+.sidebar-menu-item-boutique .sidebar-menu-icon {
+    -fx-text-fill: #2D5A56;
+    -fx-font-weight: 700;
+}
+.sidebar-spacer {
+    -fx-pref-height: 40px;
+}
+/* ============================================
    LAMMETNA - Tunisian Hidden Gems Discovery
    Premium Forum UI/UX Design
    ============================================ */
@@ -9,22 +138,22 @@
     -primary-color: #1B7B7E;
     -primary-dark: #155f61;
     -primary-light: #2a9a9d;
-    
+
     /* Accent - Warm Orange/Coral */
     -accent-color: #D2691E;
     -accent-light: #e89057;
     -accent-dark: #b5561a;
-    
+
     /* Secondary - Cream/Beige */
     -secondary-color: #F5E6D3;
     -secondary-dark: #e8d5bb;
     -secondary-light: #faf2e7;
-    
+
     /* Neutral Gray */
     -neutral-color: #CCCCCC;
     -neutral-dark: #999999;
     -neutral-light: #EEEEEE;
-    
+
     /* Additional Colors */
     -text-primary: #2d3748;
     -text-secondary: #4a5568;

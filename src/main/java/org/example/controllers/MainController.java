@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import org.example.controllers.frontoffice.ForumPostFrontController;
 import org.example.controllers.frontoffice.ForumCommentFrontController;
@@ -12,17 +16,14 @@ import org.example.controllers.frontoffice.ForumReactionFrontController;
 import java.io.IOException;
 
 public class MainController {
-    @FXML
-    private BorderPane mainContainer;
-    
-    @FXML
-    private Button btnPosts;
-    
-    @FXML
-    private Button btnCreatePost;
-    
-    @FXML
-    private Button btnBackoffice;
+
+    @FXML private BorderPane mainContainer;
+    @FXML private Button btnPosts;
+    @FXML private Button btnCreatePost;
+    @FXML private Button btnBackoffice;
+    @FXML private Button btnProfileMenu;
+
+    private ContextMenu profileMenu;
 
     private ForumPostFrontController postController = new ForumPostFrontController();
     private ForumCommentFrontController commentController = new ForumCommentFrontController();
@@ -30,6 +31,25 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        profileMenu = new ContextMenu();
+
+        MenuItem itemPosts = new MenuItem("🗺 Explore Posts");
+        itemPosts.setOnAction(e -> loadPostList());
+
+        MenuItem itemCreate = new MenuItem("✍ Share Experience");
+        itemCreate.setOnAction(e -> loadCreatePost());
+
+        MenuItem itemAdmin = new MenuItem("⚙ Admin Panel");
+        itemAdmin.setOnAction(e -> loadBackoffice());
+
+        profileMenu.getItems().addAll(itemPosts, itemCreate, itemAdmin);
+
+        btnProfileMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                profileMenu.show(btnProfileMenu, javafx.geometry.Side.BOTTOM, 0, 0);
+            }
+        });
+
         loadPostList();
     }
 
