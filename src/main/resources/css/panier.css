@@ -1,0 +1,134 @@
+/* PANIER - VERSION BASIQUE */
+
+.header-panier {
+    -fx-background-color: #1A7A7A;
+    -fx-padding: 25;
+}
+
+.titre-panier {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+}
+
+.nb-articles {
+    -fx-background-color: #D94F1E;
+    -fx-text-fill: white;
+    -fx-padding: 8 16;
+}
+
+.panier-vide {
+    -fx-padding: 60;
+}
+
+.panier-vide-titre {
+    -fx-font-size: 24px;
+    -fx-text-fill: #1A7A7A;
+}
+
+.btn-continuer-achats {
+    -fx-background-color: #D94F1E;
+    -fx-text-fill: white;
+    -fx-padding: 12 30;
+}
+
+.scroll-panier {
+    -fx-background-color: #fdf8f2;
+}
+
+.container-lignes {
+    -fx-background-color: #fdf8f2;
+    -fx-padding: 20;
+}
+
+.ligne-panier {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-border-color: #e5ddd0;
+    -fx-border-width: 1;
+}
+
+.ligne-initiale {
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-background-color: #1A7A7A;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-alignment: center;
+}
+
+.ligne-initiale-kit {
+    -fx-background-color: #D94F1E;
+}
+
+.ligne-nom {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1A7A7A;
+}
+
+.ligne-details {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+}
+
+.btn-quantite {
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-background-color: #F5E6C8;
+    -fx-text-fill: #1A7A7A;
+    -fx-font-size: 16px;
+}
+
+.ligne-quantite {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1A7A7A;
+}
+
+.ligne-sous-total {
+    -fx-font-size: 18px;
+    -fx-text-fill: #D94F1E;
+}
+
+.btn-supprimer {
+    -fx-background-color: #ffe5e5;
+    -fx-text-fill: #d32f2f;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+}
+
+.footer-panier {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-border-color: #e5ddd0;
+    -fx-border-width: 1 0 0 0;
+}
+
+.label-total {
+    -fx-font-size: 18px;
+    -fx-text-fill: #555;
+}
+
+.montant-total {
+    -fx-font-size: 28px;
+    -fx-text-fill: #D94F1E;
+}
+
+.btn-vider {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #666;
+    -fx-padding: 12 24;
+}
+
+.btn-continuer {
+    -fx-background-color: white;
+    -fx-text-fill: #1A7A7A;
+    -fx-padding: 12 24;
+    -fx-border-color: #1A7A7A;
+    -fx-border-width: 2;
+}
+
+.btn-valider {
+    -fx-background-color: #D94F1E;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 14 40;
+}

@@ -1,0 +1,372 @@
+/* ========================================
+   LAMMETNA - FRONT OFFICE CSS
+   Couleurs officielles: Orange #D94F1E, Teal #1A7A7A, Sable #F5E6C8
+   ======================================== */
+
+/* === ROOT & GENERAL === */
+.root {
+    -fx-background-color: #fdf8f2;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* === HERO HEADER === */
+.hero-header {
+    -fx-background-color: linear-gradient(to right, #1A7A7A, #156666);
+    -fx-padding: 30 40 20 40;
+    -fx-spacing: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);
+}
+
+.hero-content {
+    -fx-padding: 0;
+}
+
+.hero-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #F5E6C8;
+    -fx-opacity: 0.95;
+}
+
+/* === SEARCH FIELD === */
+.search-field {
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+    -fx-padding: 12 20;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.search-field:focused {
+    -fx-border-color: #D94F1E;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, #D94F1E, 8, 0.3, 0, 0);
+}
+
+/* === BOUTON RETOUR ADMIN === */
+.btn-retour-admin {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
+}
+
+.btn-retour-admin:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* === ONGLETS === */
+.onglets-container {
+    -fx-padding: 15 0 0 0;
+}
+
+.onglet-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 30;
+    -fx-background-radius: 8 8 0 0;
+    -fx-cursor: hand;
+}
+
+.onglet-btn:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.onglet-actif {
+    -fx-background-color: #fdf8f2;
+    -fx-text-fill: #1A7A7A;
+}
+
+/* === SIDEBAR FILTRES === */
+.sidebar-filtres {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 1 0 0;
+}
+
+.filtres-titre {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A7A7A;
+    -fx-padding: 0 0 10 0;
+}
+
+.filtre-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1A7A7A;
+}
+
+.filtre-combo {
+    -fx-background-color: #F5E6C8;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+.filtre-combo:focused {
+    -fx-border-color: #D94F1E;
+    -fx-border-width: 2;
+}
+
+.filtre-slider .thumb {
+    -fx-background-color: #D94F1E;
+}
+
+.filtre-slider .track {
+    -fx-background-color: #F5E6C8;
+}
+
+.prix-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D94F1E;
+    -fx-padding: 5 0 0 0;
+}
+
+/* === SCROLL PRODUITS === */
+.scroll-produits {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-produits .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-produits .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* === GRILLE PRODUITS === */
+.grid-produits {
+    -fx-background-color: transparent;
+}
+
+/* === CARTES PRODUITS === */
+.carte-produit {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.carte-produit:hover {
+    -fx-effect: dropshadow(gaussian, rgba(217,79,30,0.3), 15, 0.3, 0, 5);
+    -fx-translate-y: -3;
+}
+
+.carte-initiale {
+    -fx-background-color: linear-gradient(to bottom right, #F5E6C8, #e8d9bb);
+    -fx-text-fill: #D94F1E;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-pref-height: 100;
+    -fx-background-radius: 50;
+    -fx-alignment: center;
+}
+
+/* === CARTES KITS === */
+.carte-kit {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.carte-kit:hover {
+    -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.3), 15, 0.3, 0, 5);
+    -fx-translate-y: -3;
+}
+
+.carte-initiale-kit {
+    -fx-background-color: linear-gradient(to bottom right, #1A7A7A, #156666);
+    -fx-text-fill: white;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-pref-height: 100;
+    -fx-background-radius: 50;
+    -fx-alignment: center;
+}
+
+/* === TEXTES CARTES === */
+.carte-nom {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-text-alignment: center;
+}
+
+.carte-prix {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D94F1E;
+}
+
+.carte-stock-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #666;
+}
+
+.stock-ok {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.stock-faible {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e67e22;
+}
+
+/* === BADGES === */
+.badge {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+.badge-categorie {
+    -fx-background-color: #1A7A7A;
+}
+
+.badge-region {
+    -fx-background-color: #D94F1E;
+}
+
+.badge-type {
+    -fx-background-color: #1A7A7A;
+}
+
+.badge-niveau-facile {
+    -fx-background-color: #27ae60;
+}
+
+.badge-niveau-intermédiaire {
+    -fx-background-color: #e67e22;
+}
+
+.badge-niveau-difficile {
+    -fx-background-color: #c0392b;
+}
+
+/* === BOUTON DÉTAIL === */
+.btn-detail {
+    -fx-background-color: #D94F1E;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.btn-detail:hover {
+    -fx-background-color: #c0441a;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* === PANEL DÉTAIL === */
+.panel-detail {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-spacing: 15;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 0 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, -3, 0);
+}
+
+.btn-fermer {
+    -fx-background-color: transparent;
+    -fx-text-fill: #999;
+    -fx-font-size: 24px;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.btn-fermer:hover {
+    -fx-text-fill: #D94F1E;
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 20;
+}
+
+.detail-nom {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A7A7A;
+}
+
+.detail-categorie {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+    -fx-font-style: italic;
+}
+
+.detail-prix {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D94F1E;
+}
+
+.detail-stock {
+    -fx-font-size: 14px;
+    -fx-text-fill: #27ae60;
+    -fx-font-weight: 600;
+}
+
+.detail-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #444;
+    -fx-line-spacing: 1.5;
+}
+
+/* === SEPARATOR === */
+.separator .line {
+    -fx-border-color: #F5E6C8;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* === ANIMATIONS === */
+.carte-produit,
+.carte-kit,
+.btn-detail,
+.btn-retour-admin,
+.onglet-btn {
+    -fx-transition: all 0.2s ease;
+}

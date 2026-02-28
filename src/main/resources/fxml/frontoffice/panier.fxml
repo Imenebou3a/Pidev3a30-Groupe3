@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.frontoffice.PanierFrontController"
+            stylesheets="@../../css/panier.css"
+            prefWidth="900" prefHeight="700">
+    
+    <!-- En-tête -->
+    <top>
+        <VBox styleClass="header-panier">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="🛒" styleClass="panier-icon"/>
+                <Label text="Mon Panier" styleClass="titre-panier"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblNbArticles" text="0 article(s)" styleClass="nb-articles"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Contenu principal -->
+    <center>
+        <StackPane>
+            <!-- Panier vide -->
+            <VBox fx:id="panierVide" alignment="CENTER" spacing="20" styleClass="panier-vide">
+                <Label text="🛍️" styleClass="panier-vide-icon"/>
+                <Label text="Votre panier est vide" styleClass="panier-vide-titre"/>
+                <Label text="Ajoutez des produits ou kits pour commencer vos achats"
+                        styleClass="panier-vide-texte"/>
+                <Button fx:id="btnContinuer" text="Continuer mes achats"
+                         styleClass="btn-continuer-achats"/>
+            </VBox>
+            
+            <!-- Panier plein -->
+            <BorderPane fx:id="panierPlein" visible="false">
+                <center>
+                    <ScrollPane fitToWidth="true" styleClass="scroll-panier"
+                                 vbarPolicy="ALWAYS" hbarPolicy="NEVER">
+                        <VBox fx:id="containerLignes" spacing="10" styleClass="container-lignes">
+                            <padding>
+                                <Insets top="20" right="20" bottom="20" left="20"/>
+                            </padding>
+                        </VBox>
+                    </ScrollPane>
+                </center>
+                
+                <!-- Résumé et actions -->
+                <bottom>
+                    <VBox styleClass="footer-panier">
+                        <Separator/>
+                        
+                        <!-- Total -->
+                        <HBox alignment="CENTER" spacing="20" styleClass="box-total">
+                            <Label text="Total:" styleClass="label-total"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblTotal" text="0.00 TND" styleClass="montant-total"/>
+                        </HBox>
+                        
+                        <!-- Boutons d'action -->
+                        <HBox spacing="15" alignment="CENTER" styleClass="box-actions">
+                            <Button fx:id="btnVider" text="Vider le panier" styleClass="btn-vider"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="Continuer mes achats" onAction="#fermerPanier"
+                                     styleClass="btn-continuer"/>
+                            <Button fx:id="btnValider" text="Procéder au paiement"
+                                     styleClass="btn-valider"/>
+                        </HBox>
+                    </VBox>
+                </bottom>
+            </BorderPane>
+        </StackPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.frontoffice.MainFrontController"
+            stylesheets="@/css/style.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- ===== HEADER TOP ===== -->
+    <top>
+        <VBox>
+            <!-- Top Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #1a7a7a; -fx-padding: 12 30;">
+                <Label text="🌍 LAMMETNA" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="Découvrez la Tunisie Authentique" style="-fx-font-size: 13px; -fx-text-fill: #b8e6e6;"/>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <Label fx:id="lblUserNom" text="Bienvenue" style="-fx-font-size: 14px; -fx-text-fill: white;"/>
+                <Separator orientation="VERTICAL" prefHeight="25" style="-fx-background-color: rgba(255,255,255,0.3);"/>
+                <Button text="👤 Mon Profil" onAction="#afficherProfil" 
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                <Button text="🚪 Déconnexion" onAction="#handleDeconnexion" 
+                        style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 6px; -fx-padding: 8 16;"/>
+            </HBox>
+            
+            <!-- Navigation Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="0" style="-fx-background-color: white; -fx-padding: 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);">
+                <Button fx:id="btnAccueil" text="🏠 Accueil" onAction="#afficherAccueil" 
+                        styleClass="front-nav-btn, front-nav-btn-active" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnProduits" text="🛍️ Produits" onAction="#afficherProduits" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnKits" text="🎨 Kits" onAction="#afficherKits" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnEvenements" text="🎉 Événements" onAction="#afficherEvenements" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnHebergement" text="🏨 Hébergement" onAction="#afficherHebergement" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnForum" text="💬 Forum" onAction="#afficherForum" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                <Button fx:id="btnReclamations" text="📋 Réclamations" onAction="#afficherReclamations" 
+                        styleClass="front-nav-btn" prefHeight="50" prefWidth="150"/>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <!-- Bouton Favoris avec Badge -->
+                <StackPane>
+                    <Button fx:id="btnFavoris" text="❤️ Favoris" onAction="#afficherFavoris"
+                            style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);">
+                    </Button>
+                    <Label fx:id="lblBadgeFavoris" text="0" visible="false"
+                           style="-fx-background-color: #dc2626; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 3 7; -fx-background-radius: 10px; -fx-min-width: 20px; -fx-alignment: center;"
+                           StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="-5" right="-5"/></StackPane.margin>
+                    </Label>
+                    <HBox.margin><Insets right="10"/></HBox.margin>
+                </StackPane>
+                
+                <!-- Bouton Panier avec Badge -->
+                <StackPane>
+                    <Button fx:id="btnPanier" text="🛒 Panier" onAction="#afficherPanier"
+                            style="-fx-background-color: #1a7a7a; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 25px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);">
+                    </Button>
+                    <Label fx:id="lblBadgePanier" text="0" visible="false"
+                           style="-fx-background-color: #D94F1E; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 3 7; -fx-background-radius: 10px; -fx-min-width: 20px; -fx-alignment: center;"
+                           StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="-5" right="-5"/></StackPane.margin>
+                    </Label>
+                    <HBox.margin><Insets right="20"/></HBox.margin>
+                </StackPane>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ===== CONTENT AREA ===== -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #fdf8f2;"/>
+    </center>
+
+    <!-- ===== FOOTER ===== -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="30" style="-fx-background-color: #2c3e50; -fx-padding: 20;">
+            <Label text="© 2024 Lammetna - Tous droits réservés" style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Separator orientation="VERTICAL" prefHeight="15" style="-fx-background-color: rgba(255,255,255,0.3);"/>
+            <Label text="Contact: contact@lammetna.tn" style="-fx-text-fill: #b8e6e6; -fx-font-size: 12px;"/>
+            <Separator orientation="VERTICAL" prefHeight="15" style="-fx-background-color: rgba(255,255,255,0.3);"/>
+            <Label text="Tél: +216 71 234 567" style="-fx-text-fill: #b8e6e6; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.frontoffice.FavorisFrontController"
+            stylesheets="@../../css/favoris.css"
+            prefWidth="900" prefHeight="700">
+    
+    <!-- En-tête -->
+    <top>
+        <VBox styleClass="header-favoris">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="❤️" styleClass="favoris-icon"/>
+                <Label text="Mes Favoris" styleClass="titre-favoris"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblNombreFavoris" text="0 favori(s)" styleClass="nb-favoris"/>
+                <Button text="🔄" onAction="#actualiserFavoris" styleClass="btn-refresh-icon"/>
+            </HBox>
+            
+            <!-- Filtres -->
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="box-filtres">
+                <Label text="Afficher:" styleClass="label-filtre"/>
+                <ComboBox fx:id="comboFiltre" promptText="Tous" styleClass="combo-filtre" prefWidth="150">
+                    <items>
+                        <javafx.collections.FXCollections fx:factory="observableArrayList">
+                            <java.lang.String fx:value="Tous"/>
+                            <java.lang.String fx:value="Produits"/>
+                            <java.lang.String fx:value="Kits"/>
+                        </javafx.collections.FXCollections>
+                    </items>
+                </ComboBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="🗑️ Tout supprimer" onAction="#supprimerTousFavoris" styleClass="btn-delete-all"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Contenu principal -->
+    <center>
+        <StackPane>
+            <!-- Favoris vides -->
+            <VBox fx:id="boxVide" alignment="CENTER" spacing="20" styleClass="favoris-vide">
+                <Label text="💔" styleClass="favoris-vide-icon"/>
+                <Label text="Aucun favori pour le moment" styleClass="favoris-vide-titre"/>
+                <Label text="Ajoutez des produits ou kits à vos favoris pour les retrouver ici"
+                        styleClass="favoris-vide-texte" wrapText="true" maxWidth="400"/>
+                <Button text="🛍️ Découvrir les produits" onAction="#allerProduits" styleClass="btn-decouvrir"/>
+            </VBox>
+            
+            <!-- Liste des favoris -->
+            <ScrollPane fx:id="scrollFavoris" visible="false" fitToWidth="true" 
+                        styleClass="scroll-favoris" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER">
+                <VBox fx:id="gridFavoris" spacing="10" styleClass="container-favoris">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                </VBox>
+            </ScrollPane>
+        </StackPane>
+    </center>
+    
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="15" styleClass="footer-favoris">
+            <Label fx:id="lblMessage" text="" styleClass="message-footer" visible="false"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Fermer" onAction="#fermerFavoris" styleClass="btn-fermer"/>
+        </HBox>
+    </bottom>
+</BorderPane>

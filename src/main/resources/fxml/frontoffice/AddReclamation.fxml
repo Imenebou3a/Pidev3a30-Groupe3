@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.AddReclamationController"
+            styleClass="main-container">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox spacing="0" style="-fx-background-color: linear-gradient(to bottom, #1a7a7a, #2d9b9b); -fx-pref-width: 80px;">
+            <padding><Insets top="20" bottom="20"/></padding>
+            
+            <!-- Logo -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-padding: 0 0 30 0;">
+                <Label text="🌍" style="-fx-font-size: 32px;"/>
+                <Label text="LAMMETNA" style="-fx-font-size: 9px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+            
+            <!-- Navigation Icons -->
+            <VBox spacing="15" alignment="TOP_CENTER">
+                <!-- Home -->
+                <Button onAction="#handleRetourAccueil" 
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 24px; -fx-cursor: hand; -fx-padding: 12;"
+                        text="🏠">
+                    <tooltip><Tooltip text="Accueil"/></tooltip>
+                </Button>
+                
+                <!-- Réclamations (Active) -->
+                <Button onAction="#handleBack" 
+                        style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-size: 24px; -fx-background-radius: 10px; -fx-padding: 12;"
+                        text="📋">
+                    <tooltip><Tooltip text="Mes Réclamations"/></tooltip>
+                </Button>
+                
+                <!-- Profile -->
+                <Button onAction="#handleProfil" 
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 24px; -fx-cursor: hand; -fx-padding: 12;"
+                        text="👤">
+                    <tooltip><Tooltip text="Mon Profil"/></tooltip>
+                </Button>
+                
+                <Region VBox.vgrow="ALWAYS"/>
+                
+                <!-- Logout -->
+                <Button onAction="#handleLogout" 
+                        style="-fx-background-color: transparent; -fx-text-fill: #ffcccb; -fx-font-size: 24px; -fx-cursor: hand; -fx-padding: 12;"
+                        text="🚪">
+                    <tooltip><Tooltip text="Déconnexion"/></tooltip>
+                </Button>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Button text="← Retour" onAction="#handleBack" 
+                    style="-fx-background-color: transparent; -fx-border-color: #cbd5e1; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 16;"/>
+            <Label text="📨 Nouvelle Réclamation" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENU -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #fdf8f2;">
+            <VBox spacing="30" alignment="TOP_CENTER">
+                <padding>
+                    <Insets top="40" bottom="50" left="80" right="80"/>
+                </padding>
+
+                <!-- FORMULAIRE -->
+                <VBox spacing="25" maxWidth="900" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 40; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5);">
+
+                    <VBox spacing="8">
+                        <Label text="Déposer une réclamation" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Décrivez votre problème et nous vous répondrons dans les plus brefs délais." style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                    </VBox>
+
+                    <Separator style="-fx-background-color: #e2e8f0;"/>
+
+                    <VBox spacing="20">
+                        <!-- Sujet -->
+                        <VBox spacing="8">
+                            <Label text="Sujet *" style="-fx-font-weight: 600; -fx-text-fill: #334155; -fx-font-size: 14px;"/>
+                            <TextField fx:id="sujetField" promptText="Ex: Problème de réservation" 
+                                       styleClass="text-field" 
+                                       style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-font-size: 14px; -fx-padding: 12;"/>
+                            <Label fx:id="sujetError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+
+                        <!-- Catégorie et Priorité -->
+                        <HBox spacing="20">
+                            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="Catégorie *" style="-fx-font-weight: 600; -fx-text-fill: #334155; -fx-font-size: 14px;"/>
+                                <ComboBox fx:id="categorieCombo" styleClass="combo-box" maxWidth="Infinity" 
+                                          style="-fx-background-radius: 8px; -fx-border-radius: 8px;"/>
+                                <Label fx:id="categorieError" styleClass="error-label" visible="false" managed="false"/>
+                            </VBox>
+
+                            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="Priorité *" style="-fx-font-weight: 600; -fx-text-fill: #334155; -fx-font-size: 14px;"/>
+                                <ComboBox fx:id="prioriteCombo" styleClass="combo-box" maxWidth="Infinity" 
+                                          style="-fx-background-radius: 8px; -fx-border-radius: 8px;"/>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Description -->
+                        <VBox spacing="8">
+                            <Label text="Description détaillée *" style="-fx-font-weight: 600; -fx-text-fill: #334155; -fx-font-size: 14px;"/>
+                            <TextArea fx:id="descriptionArea" promptText="Décrivez votre problème en détail..."
+                                      prefRowCount="8" styleClass="text-field" wrapText="true" 
+                                      style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-font-size: 14px; -fx-padding: 12;"/>
+                            <Label text="Minimum 20 caractères" style="-fx-text-fill: #94a3b8; -fx-font-size: 12px;"/>
+                            <Label fx:id="descriptionError" styleClass="error-label" visible="false" managed="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <Separator style="-fx-background-color: #e2e8f0;"/>
+
+                    <!-- MESSAGE -->
+                    <Label fx:id="messageLabel" styleClass="error-label" visible="false" managed="false" wrapText="true"/>
+
+                    <!-- BOUTONS -->
+                    <HBox spacing="15" alignment="CENTER">
+                        <Button text="📨 Envoyer la réclamation" onAction="#handleSubmit" 
+                                style="-fx-background-color: #1a7a7a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand; -fx-padding: 14 28; -fx-font-size: 15px; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.3), 10, 0, 0, 3);" 
+                                prefWidth="240" prefHeight="50"/>
+                        <Button text="✗ Annuler" onAction="#handleBack" 
+                                style="-fx-background-color: transparent; -fx-border-color: #cbd5e1; -fx-border-width: 2px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 14 28; -fx-font-size: 15px;" 
+                                prefWidth="150" prefHeight="50"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

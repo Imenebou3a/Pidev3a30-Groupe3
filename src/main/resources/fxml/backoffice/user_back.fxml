@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="tn.esprit.controllers.backoffice.UserBackController"
+      spacing="20" style="-fx-background-color: #f5f5f5; -fx-padding: 20;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Gestion des Utilisateurs" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <!-- Statistics Cards -->
+        <VBox alignment="CENTER" spacing="5" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label text="Total Utilisateurs" style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+            <Label fx:id="lblTotalUsers" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="5" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label text="Actifs" style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+            <Label fx:id="lblUsersActifs" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="5" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label text="En Attente" style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+            <Label fx:id="lblUsersEnAttente" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #f59e0b;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+        <Label text="Rechercher:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="txtRecherche" promptText="Nom, prénom ou email..." prefWidth="300"/>
+        
+        <Label text="Rôle:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="comboRole" prefWidth="150"/>
+        
+        <Label text="Statut:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="comboStatut" prefWidth="150"/>
+        
+        <Button text="Réinitialiser" onAction="#handleReinitialiser" 
+                style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblStats" text="Total: 0 utilisateurs" style="-fx-font-style: italic; -fx-text-fill: #666;"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tableUsers" VBox.vgrow="ALWAYS" 
+               style="-fx-background-color: white; -fx-background-radius: 10;">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colNom" text="Nom" prefWidth="120"/>
+            <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="120"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colTelephone" text="Téléphone" prefWidth="100"/>
+            <TableColumn fx:id="colRole" text="Rôle" prefWidth="80"/>
+            <TableColumn fx:id="colStatut" text="Statut" prefWidth="100"/>
+            <TableColumn fx:id="colDateInscription" text="Date Inscription" prefWidth="120"/>
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+</VBox>

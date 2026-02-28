@@ -1,0 +1,328 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    PIDEV - INTEGRATED APPLICATION ARCHITECTURE                ║
+║                   User/Reclamation + Produit/Kit Modules                      ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           PRESENTATION LAYER                                  │
+│                              (JavaFX FXML)                                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+                              ┌─────────────┐
+                              │   LOGIN     │
+                              │ Controller  │
+                              └──────┬──────┘
+                                     │
+                    ┌────────────────┴────────────────┐
+                    │                                 │
+              ┌─────▼─────┐                    ┌─────▼─────┐
+              │   ADMIN   │                    │   USER    │
+              │   ROLE    │                    │   ROLE    │
+              └─────┬─────┘                    └─────┬─────┘
+                    │                                │
+        ┌───────────┴───────────┐                   │
+        │                       │                   │
+┌───────▼────────┐    ┌────────▼────────┐   ┌──────▼──────┐
+│   BACKOFFICE   │    │   BACKOFFICE    │   │ FRONTOFFICE │
+│   Dashboard    │    │   Navigation    │   │  Dashboard  │
+│   (Stats)      │    │   (Main Menu)   │   │  (User)     │
+└───────┬────────┘    └────────┬────────┘   └──────┬──────┘
+        │                      │                    │
+        │         ┌────────────┼────────────┐       │
+        │         │            │            │       │
+    ┌───▼───┐ ┌──▼──┐ ┌──────▼──────┐ ┌───▼───┐  │
+    │Product│ │ Kit │ │    User     │ │Reclam.│  │
+    │ CRUD  │ │CRUD │ │ Management  │ │ Mgmt  │  │
+    └───┬───┘ └──┬──┘ └──────┬──────┘ └───┬───┘  │
+        │        │            │            │      │
+        │        │            │            │      │
+        │        │            │            │   ┌──▼──────┐
+        │        │            │            │   │  Add    │
+        │        │            │            │   │Complaint│
+        │        │            │            │   └──┬──────┘
+        │        │            │            │      │
+        │        │            │            │   ┌──▼──────┐
+        │        │            │            │   │  View   │
+        │        │            │            │   │My Compl.│
+        │        │            │            │   └──┬──────┘
+        │        │            │            │      │
+┌───────┴────────┴────────────┴────────────┴──────┴───────────────────────────┐
+│                           CONTROLLER LAYER                                    │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │   Produit    │  │     Kit      │  │     User     │  │ Reclamation  │   │
+│  │ BackCtrl     │  │  BackCtrl    │  │  BackCtrl    │  │  BackCtrl    │   │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘   │
+│         │                 │                  │                 │            │
+│  ┌──────▼───────┐  ┌──────▼───────┐  ┌──────▼───────┐  ┌──────▼───────┐   │
+│  │ Dashboard    │  │   Add/Edit   │  │   Profile    │  │   Add/View   │   │
+│  │  Controller  │  │ Reclamation  │  │  Controller  │  │  Complaint   │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘   │
+└───────────────────────────────────────────────────────────────────────────┘
+                                      │
+┌─────────────────────────────────────┴─────────────────────────────────────┐
+│                           SERVICE LAYER                                     │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │   Produit    │  │     Kit      │  │     User     │  │ Reclamation  │  │
+│  │   Local      │  │   Hobbies    │  │  Utilisateur │  │   Service    │  │
+│  │   Service    │  │   Service    │  │   Service    │  │              │  │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  │
+│         │                 │                  │                 │           │
+│         │  ┌──────────────┼──────────────────┼─────────────────┘           │
+│         │  │              │                  │                             │
+│         │  │              │                  │                             │
+└─────────┼──┼──────────────┼──────────────────┼─────────────────────────────┘
+          │  │              │                  │
+┌─────────┼──┼──────────────┼──────────────────┼─────────────────────────────┐
+│         │  │              │                  │      DATA ACCESS LAYER       │
+│         │  │              │                  │                              │
+│  ┌──────▼──▼──────────────▼──────────────────▼──────┐                      │
+│  │              MyDataBase (Singleton)               │                      │
+│  │         Connection: jdbc:mysql://localhost        │                      │
+│  └───────────────────────┬───────────────────────────┘                      │
+└──────────────────────────┼──────────────────────────────────────────────────┘
+                           │
+┌──────────────────────────┴──────────────────────────────────────────────────┐
+│                         DATABASE LAYER (MySQL)                               │
+│                                                                              │
+│  ┌─────────────────┐         ┌─────────────────┐                           │
+│  │  utilisateur    │         │  produit_local  │                           │
+│  ├─────────────────┤         ├─────────────────┤                           │
+│  │ id (PK)         │         │ id_produit (PK) │                           │
+│  │ nom             │         │ nom             │                           │
+│  │ prenom          │         │ description     │                           │
+│  │ email (UNIQUE)  │         │ prix            │                           │
+│  │ motDePasse      │         │ categorie       │                           │
+│  │ telephone       │         │ region          │                           │
+│  │ role            │         │ stock           │                           │
+│  │ statut          │         │ image_url       │                           │
+│  └────────┬────────┘         └────────┬────────┘                           │
+│           │                           │                                     │
+│           │ 1                         │ 1                                   │
+│           │                           │                                     │
+│           │ N                         │ N                                   │
+│           │                           │                                     │
+│  ┌────────▼────────┐         ┌────────▼────────────────┐                   │
+│  │  reclamation    │         │  kit_hobby_artisanal    │                   │
+│  ├─────────────────┤         ├─────────────────────────┤                   │
+│  │ id (PK)         │         │ id_kit (PK)             │                   │
+│  │ sujet           │         │ nom_kit                 │                   │
+│  │ description     │         │ description             │                   │
+│  │ statut          │         │ type_artisanat          │                   │
+│  │ priorite        │         │ niveau_difficulte       │                   │
+│  │ categorie       │         │ prix                    │                   │
+│  │ date_creation   │         │ stock                   │                   │
+│  │ date_resolution │         │ image_url               │                   │
+│  │ id_utilisateur  │◄────┐   │ id_produit (FK)         │◄────┐             │
+│  │   (FK)          │     │   └─────────────────────────┘     │             │
+│  │ reponse_admin   │     │                                   │             │
+│  └─────────────────┘     │                                   │             │
+│                          │                                   │             │
+│  FOREIGN KEY CONSTRAINTS:│                                   │             │
+│  ┌───────────────────────┘                                   │             │
+│  │ FK: reclamation.id_utilisateur → utilisateur.id           │             │
+│  │     ON DELETE CASCADE                                     │             │
+│  │     (Delete user → Delete all their complaints)           │             │
+│  │                                                            │             │
+│  └────────────────────────────────────────────────────────────┘             │
+│    FK: kit_hobby_artisanal.id_produit → produit_local.id_produit           │
+│        ON DELETE RESTRICT                                                   │
+│        (Cannot delete product if kits exist)                                │
+│                                                                              │
+│  INDEXES:                                                                    │
+│  • utilisateur: email, role, statut                                         │
+│  • reclamation: id_utilisateur, statut, priorite, categorie                │
+│  • produit_local: categorie, region, stock                                 │
+│  • kit_hobby_artisanal: id_produit, type_artisanat, niveau_difficulte      │
+│                                                                              │
+│  VIEWS:                                                                      │
+│  • v_reclamations_details: Complaints with user names (JOIN)               │
+│  • v_kits_avec_produits: Kits with product info (JOIN)                     │
+│  • v_statistiques_globales: Global statistics aggregation                  │
+│                                                                              │
+│  TRIGGERS:                                                                   │
+│  • trg_before_delete_produit: Prevent product deletion if kits exist       │
+│  • trg_after_update_user_login: Log user login activity                    │
+│                                                                              │
+│  STORED PROCEDURES:                                                          │
+│  • sp_activer_compte(user_id): Activate user account                       │
+│  • sp_repondre_reclamation(id, response, status): Admin response           │
+│  • sp_verifier_stock_produit(product_id): Check product stock              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           UTILITY LAYER                                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                      │
+│  │   Session    │  │  Validation  │  │   MyDataBase │                      │
+│  │  (Singleton) │  │    Utils     │  │  (Singleton) │                      │
+│  └──────────────┘  └──────────────┘  └──────────────┘                      │
+│  • Store current  • Email validation • DB connection                        │
+│    logged user    • Phone validation • Connection pool                      │
+│  • Check role     • Password strength• Error handling                       │
+│  • Logout         • Input sanitize   • Query execution                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           DATA FLOW EXAMPLES                                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FLOW 1: User Creates Complaint                                               │
+│                                                                               │
+│  User → AddReclamationController                                             │
+│           │                                                                   │
+│           ├─ Get current user from Session                                   │
+│           │                                                                   │
+│           ├─ Validate form (sujet, description, categorie)                   │
+│           │                                                                   │
+│           └─ ServiceReclamation.ajouter(reclamation)                         │
+│                      │                                                        │
+│                      ├─ INSERT INTO reclamation                              │
+│                      │   (sujet, description, categorie, id_utilisateur)     │
+│                      │                                                        │
+│                      └─ FK constraint validates id_utilisateur exists        │
+│                                                                               │
+│  User ← MesReclamationsController                                            │
+│           │                                                                   │
+│           └─ ServiceReclamation.getReclamationsByUser(userId)                │
+│                      │                                                        │
+│                      └─ SELECT * FROM reclamation                            │
+│                          WHERE id_utilisateur = ?                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FLOW 2: Admin Responds to Complaint                                          │
+│                                                                               │
+│  Admin → ReclamationBackController                                           │
+│            │                                                                  │
+│            ├─ ServiceReclamation.getAll()                                    │
+│            │         │                                                        │
+│            │         └─ SELECT r.*, CONCAT(u.prenom, ' ', u.nom)             │
+│            │            FROM reclamation r                                    │
+│            │            LEFT JOIN utilisateur u ON r.id_utilisateur = u.id   │
+│            │                                                                  │
+│            ├─ Display complaints with user names                             │
+│            │                                                                  │
+│            ├─ Admin selects complaint and writes response                    │
+│            │                                                                  │
+│            └─ ServiceReclamation.repondre(id, response, status)              │
+│                       │                                                       │
+│                       └─ UPDATE reclamation                                  │
+│                           SET reponse_admin = ?, statut = ?,                 │
+│                               date_resolution = ?                            │
+│                           WHERE id = ?                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FLOW 3: Admin Creates Kit with Product Link                                  │
+│                                                                               │
+│  Admin → KitBackController                                                   │
+│            │                                                                  │
+│            ├─ ProduitLocalService.afficher()                                 │
+│            │         │                                                        │
+│            │         └─ SELECT * FROM produit_local                          │
+│            │                                                                  │
+│            ├─ Display products in ComboBox                                   │
+│            │                                                                  │
+│            ├─ Admin selects product and fills kit details                    │
+│            │                                                                  │
+│            └─ KitHobbiesService.ajouter(kit)                                 │
+│                       │                                                       │
+│                       └─ INSERT INTO kit_hobby_artisanal                     │
+│                           (nom_kit, type_artisanat, prix, id_produit, ...)   │
+│                           │                                                   │
+│                           └─ FK constraint validates id_produit exists       │
+│                                                                               │
+│  Admin ← KitBackController (refresh list)                                    │
+│            │                                                                  │
+│            └─ Display kits with product names (JOIN query)                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FLOW 4: Admin Tries to Delete Product with Kits                              │
+│                                                                               │
+│  Admin → ProduitBackController                                               │
+│            │                                                                  │
+│            ├─ Admin clicks delete on product                                 │
+│            │                                                                  │
+│            └─ ProduitLocalService.supprimer(productId)                       │
+│                       │                                                       │
+│                       └─ DELETE FROM produit_local WHERE id_produit = ?      │
+│                                  │                                            │
+│                                  ├─ Trigger: trg_before_delete_produit       │
+│                                  │            checks for associated kits     │
+│                                  │                                            │
+│                                  └─ FK constraint RESTRICT prevents delete   │
+│                                     if kits exist                             │
+│                                                                               │
+│  Admin ← Error message: "Cannot delete product with associated kits"         │
+│                                                                               │
+│  Solution: Delete kits first, then product                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         SECURITY & SESSION FLOW                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  Login Process:                                                               │
+│                                                                               │
+│  1. User enters email + password                                             │
+│  2. LoginController validates format                                         │
+│  3. ServiceUtilisateur.login(email, SHA256(password))                        │
+│  4. Database query with hashed password                                      │
+│  5. If found and ACTIF:                                                      │
+│     • Session.getInstance().setUtilisateurConnecte(user)                     │
+│     • Update dernierLogin timestamp                                          │
+│     • Redirect based on role:                                                │
+│       - ADMIN → backoffice/main_back.fxml                                    │
+│       - USER/HOTE → frontoffice/Dashboard.fxml                               │
+│  6. If not found or DESACTIVE:                                               │
+│     • Show error message                                                     │
+│     • Stay on login page                                                     │
+│                                                                               │
+│  Session Management:                                                          │
+│  • Singleton pattern (one instance per application)                          │
+│  • Stores current user object                                                │
+│  • All controllers check session for user info                               │
+│  • Logout clears session and redirects to login                              │
+│                                                                               │
+│  Role-Based Access:                                                           │
+│  • ADMIN: Full backoffice access (CRUD all modules)                          │
+│  • HOTE: Frontoffice + manage own listings                                   │
+│  • USER: Frontoffice + create complaints                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         INTEGRATION SUMMARY                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+✅ User Module ↔ Reclamation Module
+   • FK: reclamation.id_utilisateur → utilisateur.id
+   • Cascade: Delete user → Delete complaints
+   • View: v_reclamations_details (JOIN with user names)
+
+✅ Product Module ↔ Kit Module
+   • FK: kit_hobby_artisanal.id_produit → produit_local.id_produit
+   • Restrict: Cannot delete product if kits exist
+   • View: v_kits_avec_produits (JOIN with product info)
+
+✅ All Modules → Dashboard
+   • DashboardBackController aggregates statistics
+   • Real-time counts from all services
+   • Stock alerts (products < 10, kits < 5)
+   • Complaint status breakdown
+
+✅ Session Management
+   • Singleton pattern for current user
+   • Role-based navigation
+   • Logout functionality
+
+✅ Data Integrity
+   • Foreign key constraints enforced
+   • Triggers prevent invalid operations
+   • Indexes for performance
+   • Views for reporting
+
+═══════════════════════════════════════════════════════════════════════════════
+                            END OF ARCHITECTURE DIAGRAM
+═══════════════════════════════════════════════════════════════════════════════

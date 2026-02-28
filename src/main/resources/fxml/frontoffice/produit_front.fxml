@@ -1,0 +1,17 @@
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.frontoffice.ProduitFrontController"
+      stylesheets="@style.css">
+
+    <TextField fx:id="tfNom" promptText="Nom"/>
+    <TextField fx:id="tfDescription" promptText="Description"/>
+    <TextField fx:id="tfPrix" promptText="Prix"/>
+    <TextField fx:id="tfCategorie" promptText="Categorie"/>
+    <TextField fx:id="tfRegion" promptText="Region"/>
+    <TextField fx:id="tfStock" promptText="Stock"/>
+    <TextField fx:id="tfImage" promptText="Image URL"/>
+
+    <Button text="Ajouter" onAction="#ajouterProduit"/>
+    <Button text="Supprimer" onAction="#supprimerProduit"/>
+
+    <TableView fx:id="tableProduit"/>
+</VBox>

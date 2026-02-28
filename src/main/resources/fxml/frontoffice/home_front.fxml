@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fitToWidth="true" style="-fx-background-color: #fdf8f2; -fx-background: #fdf8f2;">
+    
+    <VBox spacing="0" style="-fx-background-color: #fdf8f2;">
+        
+        <!-- Hero Section avec gradient -->
+        <StackPane prefHeight="450" style="-fx-background-color: linear-gradient(to bottom right, #1a7a7a, #2d9b9b, #1a7a7a);">
+            <VBox alignment="CENTER" spacing="25">
+                <padding><Insets top="60" bottom="60" left="80" right="80"/></padding>
+                
+                <!-- Icône principale -->
+                <Label text="🌍" style="-fx-font-size: 80px;"/>
+                
+                <!-- Titre principal -->
+                <VBox alignment="CENTER" spacing="12">
+                    <Label text="Bienvenue sur Lammetna" 
+                           style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);"/>
+                    <Label text="Votre Passerelle vers la Tunisie Authentique" 
+                           style="-fx-font-size: 18px; -fx-text-fill: #e0f2f1; -fx-font-style: italic;"/>
+                </VBox>
+                
+                <!-- Description -->
+                <Label text="Découvrez l'artisanat local, explorez des kits créatifs uniques et vivez l'expérience tunisienne" 
+                       style="-fx-font-size: 15px; -fx-text-fill: white; -fx-text-alignment: center; -fx-max-width: 650px;" 
+                       wrapText="true"/>
+                
+                <!-- CTA Buttons -->
+                <HBox spacing="15" alignment="CENTER">
+                    <Button text="🛍️ Explorer les Produits" 
+                            style="-fx-background-color: white; -fx-text-fill: #1a7a7a; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 15 30; -fx-background-radius: 25px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);"/>
+                    <Button text="🎨 Découvrir les Kits" 
+                            style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 2px; -fx-border-radius: 25px; -fx-background-radius: 25px; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 15 30; -fx-cursor: hand;"/>
+                </HBox>
+            </VBox>
+        </StackPane>
+
+        <!-- Features Section -->
+        <VBox spacing="50" style="-fx-background-color: #fdf8f2;">
+            <padding><Insets top="60" bottom="60" left="80" right="80"/></padding>
+            
+            <!-- Section Title -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Pourquoi Choisir Lammetna ?" 
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                <Label text="Une expérience unique pour découvrir la Tunisie" 
+                       style="-fx-font-size: 15px; -fx-text-fill: #64748b;"/>
+            </VBox>
+
+            <!-- Features Grid -->
+            <GridPane hgap="25" vgap="25">
+                
+                <!-- Feature 1: Produits Locaux -->
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #e0f2f1; -fx-background-radius: 40;">
+                        <Label text="🛍️" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Produits Locaux" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Artisanat authentique de toutes les régions tunisiennes" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center; -fx-wrap-text: true;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Feature 2: Kits Hobbies -->
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #fff3e0; -fx-background-radius: 40;">
+                        <Label text="🎨" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Kits Créatifs" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Apprenez l'artisanat tunisien avec nos kits complets" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Feature 3: Support -->
+                <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #fce4ec; -fx-background-radius: 40;">
+                        <Label text="💬" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Support Client" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Une équipe à votre écoute pour toute question" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Feature 4: Livraison -->
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #f3e5f5; -fx-background-radius: 40;">
+                        <Label text="🚚" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Livraison Rapide" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Livraison dans toute la Tunisie en 48h" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Feature 5: Qualité -->
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #e8f5e9; -fx-background-radius: 40;">
+                        <Label text="✨" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Qualité Garantie" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Produits sélectionnés avec soin par nos experts" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Feature 6: Réclamations -->
+                <VBox GridPane.columnIndex="2" GridPane.rowIndex="1" alignment="TOP_CENTER" spacing="20" 
+                      style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40 30; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.15), 20, 0, 0, 5); -fx-cursor: hand;" 
+                      prefHeight="280">
+                    <StackPane prefWidth="80" prefHeight="80" style="-fx-background-color: #fff9c4; -fx-background-radius: 40;">
+                        <Label text="📋" style="-fx-font-size: 40px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Suivi Facile" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                        <Label text="Gérez vos réclamations en toute simplicité" 
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" 
+                               wrapText="true" maxWidth="200"/>
+                    </VBox>
+                </VBox>
+
+            </GridPane>
+        </VBox>
+
+        <!-- Call to Action Section -->
+        <VBox alignment="CENTER" spacing="25" style="-fx-background-color: linear-gradient(to right, #1a7a7a, #2d9b9b); -fx-padding: 60 80;">
+            <Label text="Prêt à Découvrir la Tunisie ?" 
+                   style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Rejoignez des milliers de clients satisfaits et commencez votre voyage culturel" 
+                   style="-fx-font-size: 15px; -fx-text-fill: #e0f2f1; -fx-text-alignment: center;" 
+                   wrapText="true" maxWidth="600"/>
+            <Button text="Commencer Maintenant →" 
+                    style="-fx-background-color: white; -fx-text-fill: #1a7a7a; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 18 40; -fx-background-radius: 30px; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 5);"/>
+        </VBox>
+
+    </VBox>
+    
+</ScrollPane>

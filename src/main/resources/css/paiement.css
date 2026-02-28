@@ -1,0 +1,162 @@
+/* PAIEMENT - STYLE MODERNE */
+
+.header-paiement {
+    -fx-background-color: #1A7A7A;
+    -fx-padding: 25;
+}
+
+.titre-paiement {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.container-principal {
+    -fx-background-color: #fdf8f2;
+}
+
+.formulaire-paiement {
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-border-color: #e5ddd0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.section-titre {
+    -fx-font-size: 20px;
+    -fx-text-fill: #1A7A7A;
+    -fx-font-weight: bold;
+}
+
+.label-champ {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+.champ-texte {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.champ-texte:focused {
+    -fx-border-color: #1A7A7A;
+    -fx-border-width: 2;
+}
+
+.box-actions-paiement {
+    -fx-padding: 20 0 0 0;
+}
+
+.btn-retour {
+    -fx-background-color: white;
+    -fx-text-fill: #666;
+    -fx-padding: 12 24;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 14px;
+}
+
+.btn-payer {
+    -fx-background-color: #D94F1E;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 14 40;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.btn-payer:hover {
+    -fx-background-color: #c44419;
+}
+
+.resume-commande {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-border-color: #e5ddd0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.resume-titre {
+    -fx-font-size: 18px;
+    -fx-text-fill: #1A7A7A;
+    -fx-font-weight: bold;
+}
+
+.scroll-resume {
+    -fx-background-color: transparent;
+}
+
+.container-items {
+    -fx-background-color: #fafafa;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.item-resume {
+    -fx-background-color: white;
+    -fx-padding: 12;
+    -fx-border-color: #e5ddd0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.item-nom {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.item-details {
+    -fx-font-size: 12px;
+    -fx-text-fill: #888;
+}
+
+.item-quantite {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+}
+
+.item-prix {
+    -fx-font-size: 14px;
+    -fx-text-fill: #D94F1E;
+    -fx-font-weight: bold;
+}
+
+.label-resume {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+}
+
+.montant-resume {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.box-total-final {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 15;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.label-total-final {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.montant-total-final {
+    -fx-font-size: 24px;
+    -fx-text-fill: #D94F1E;
+    -fx-font-weight: bold;
+}

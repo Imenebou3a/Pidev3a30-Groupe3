@@ -1,0 +1,215 @@
+/* ===== HEADER ===== */
+.header-favoris {
+    -fx-background-color: linear-gradient(to bottom, #ef4444, #dc2626);
+    -fx-padding: 20 25 15 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.favoris-icon {
+    -fx-font-size: 32px;
+}
+
+.titre-favoris {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.nb-favoris {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-padding: 5 12;
+    -fx-background-radius: 15px;
+}
+
+.btn-refresh-icon {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 8 12;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.btn-refresh-icon:hover {
+    -fx-background-color: rgba(255,255,255,0.3);
+}
+
+/* ===== FILTRES ===== */
+.box-filtres {
+    -fx-padding: 10 0 0 0;
+}
+
+.label-filtre {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.combo-filtre {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+}
+
+.btn-delete-all {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 12;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-delete-all:hover {
+    -fx-background-color: #b91c1c;
+}
+
+/* ===== FAVORIS VIDE ===== */
+.favoris-vide {
+    -fx-background-color: #fef2f2;
+    -fx-padding: 60;
+}
+
+.favoris-vide-icon {
+    -fx-font-size: 80px;
+}
+
+.favoris-vide-titre {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #991b1b;
+}
+
+.favoris-vide-texte {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280;
+    -fx-text-alignment: center;
+}
+
+.btn-decouvrir {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 25;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+}
+
+.btn-decouvrir:hover {
+    -fx-background-color: #dc2626;
+}
+
+/* ===== SCROLL ===== */
+.scroll-favoris {
+    -fx-background-color: #fef2f2;
+    -fx-background: #fef2f2;
+}
+
+.scroll-favoris .viewport {
+    -fx-background-color: #fef2f2;
+}
+
+.container-favoris {
+    -fx-background-color: #fef2f2;
+}
+
+/* ===== CARTE FAVORI ===== */
+.favori-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);
+}
+
+.favori-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.3), 12, 0, 0, 3);
+}
+
+.favori-image {
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 8px;
+}
+
+.favori-type-badge {
+    -fx-background-color: #fecaca;
+    -fx-text-fill: #991b1b;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 8;
+    -fx-background-radius: 10px;
+}
+
+.favori-nom {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2937;
+}
+
+.favori-prix {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ef4444;
+}
+
+.favori-date {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9ca3af;
+}
+
+.btn-retirer {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-retirer:hover {
+    -fx-background-color: #fecaca;
+}
+
+.btn-voir {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-voir:hover {
+    -fx-background-color: #dc2626;
+}
+
+/* ===== FOOTER ===== */
+.footer-favoris {
+    -fx-background-color: white;
+    -fx-padding: 15 25;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 1 0 0 0;
+}
+
+.message-footer {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6b7280;
+}
+
+.btn-fermer {
+    -fx-background-color: #6b7280;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-fermer:hover {
+    -fx-background-color: #4b5563;
+}

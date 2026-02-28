@@ -1,0 +1,358 @@
+/* ===== TITRE ===== */
+.titre-page {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ===== BOUTONS ===== */
+.btn-actualiser {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-actualiser:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-reset {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-reset:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+/* ===== STATISTIQUES ===== */
+.stats-container {
+    -fx-padding: 0;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-alignment: center;
+}
+
+.stat-card.stat-warning {
+    -fx-border-color: #f39c12;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card.stat-success {
+    -fx-border-color: #27ae60;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card.stat-info {
+    -fx-border-color: #3498db;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: 600;
+}
+
+.stat-value {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ===== FILTRES ===== */
+.filtres-container {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+}
+
+.label-filtre {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #34495e;
+}
+
+/* ===== CONTEXTE ET RÈGLES ===== */
+.contexte-container {
+    -fx-background-color: #e8f4f8;
+    -fx-padding: 15;
+    -fx-background-radius: 8px;
+    -fx-border-color: #3498db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.contexte-titre {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.regles-box {
+    -fx-padding: 10 0 0 30;
+}
+
+.puce {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+}
+
+.regle-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-min-width: 90px;
+}
+
+.regle-texte {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555;
+}
+
+/* ===== TABLEAU ===== */
+.table-commandes {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+}
+
+.table-commandes .column-header {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 12 8;
+}
+
+.table-commandes .column-header-background {
+    -fx-background-color: #34495e;
+}
+
+.table-commandes .table-cell {
+    -fx-padding: 10 8;
+    -fx-font-size: 13px;
+}
+
+.table-commandes .table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-commandes .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-commandes .table-row-cell:hover {
+    -fx-background-color: #e8f4f8;
+}
+
+.table-commandes .table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.col-id .table-cell {
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+}
+
+/* ===== BOUTONS D'ACTION ===== */
+.btn-details {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 6 12;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.btn-details:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-statut {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 6 12;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.btn-statut:hover {
+    -fx-background-color: #229954;
+}
+
+/* ===== CHAMPS DE TEXTE ===== */
+TextField {
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+TextField:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+}
+
+/* ===== COMBOBOX ===== */
+ComboBox {
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-background-radius: 5px;
+}
+
+
+/* ===== CARTES COMMANDES ===== */
+.commande-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 18;
+    -fx-pref-width: 350px;
+}
+
+.commande-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0, 0, 3);
+}
+
+.commande-numero {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.commande-statut {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 12;
+    -fx-background-radius: 15px;
+}
+
+.statut-en_attente {
+    -fx-background-color: #fff3cd;
+    -fx-text-fill: #856404;
+}
+
+.statut-confirmee {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.statut-expediee {
+    -fx-background-color: #d1ecf1;
+    -fx-text-fill: #0c5460;
+}
+
+.statut-livree {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.statut-annulee {
+    -fx-background-color: #f8d7da;
+    -fx-text-fill: #721c24;
+}
+
+.info-section {
+    -fx-padding: 10 0;
+}
+
+.info-principale {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.info-secondaire {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.label-petit {
+    -fx-font-size: 11px;
+    -fx-text-fill: #95a5a6;
+    -fx-font-weight: 600;
+}
+
+.montant-total {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.date-commande {
+    -fx-font-size: 13px;
+    -fx-text-fill: #34495e;
+}
+
+.btn-action {
+    -fx-font-size: 12px;
+    -fx-padding: 8 14;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-font-weight: 600;
+}
+
+.btn-details {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.btn-details:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-confirmer {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+
+.btn-confirmer:hover {
+    -fx-background-color: #229954;
+}
+
+.btn-annuler {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.btn-annuler:hover {
+    -fx-background-color: #c0392b;
+}
+
+.btn-expedier {
+    -fx-background-color: #9b59b6;
+    -fx-text-fill: white;
+}
+
+.btn-expedier:hover {
+    -fx-background-color: #8e44ad;
+}
+
+.btn-livrer {
+    -fx-background-color: #16a085;
+    -fx-text-fill: white;
+}
+
+.btn-livrer:hover {
+    -fx-background-color: #138d75;
+}

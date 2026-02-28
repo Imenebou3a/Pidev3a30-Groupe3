@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.frontoffice.ProduitsFrontController"
+      spacing="20" style="-fx-background-color: #fdf8f2;">
+    
+    <!-- Left Side: Products List -->
+    <VBox spacing="25" style="-fx-background-color: #fdf8f2;" HBox.hgrow="ALWAYS">
+        <padding><Insets top="30" bottom="30" left="50" right="20"/></padding>
+
+        <!-- Header Section -->
+        <VBox spacing="10">
+            <Label text="🛍️ Produits Locaux Tunisiens" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+            <Label text="Découvrez l'authenticité de l'artisanat tunisien" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="lblNombreResultats" text="0 produit(s) trouvé(s)" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-style: italic;"/>
+        </VBox>
+
+        <!-- Filters Section -->
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 2);">
+            <TextField fx:id="searchField" promptText="🔍 Rechercher un produit..." prefWidth="300" styleClass="text-field"/>
+            <ComboBox fx:id="filterCategorie" promptText="Catégorie" prefWidth="150" styleClass="combo-box"/>
+            <ComboBox fx:id="filterRegion" promptText="Région" prefWidth="150" styleClass="combo-box"/>
+            <ComboBox fx:id="filterTri" promptText="Trier par" prefWidth="150" styleClass="combo-box"/>
+            <Button text="↻ Réinitialiser" onAction="#handleResetFiltres" styleClass="btn-secondary"/>
+        </HBox>
+
+        <!-- Products Grid -->
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="gridProduits" hgap="20" vgap="20" style="-fx-background-color: transparent; -fx-padding: 10;"/>
+        </ScrollPane>
+    </VBox>
+    
+    <!-- Right Side: Details Panel -->
+    <VBox fx:id="detailsPanel" spacing="20" prefWidth="350" maxWidth="350" minWidth="350"
+          style="-fx-background-color: white; -fx-background-radius: 15px; -fx-effect: dropshadow(gaussian, rgba(26,122,122,0.2), 20, 0, 0, 5); -fx-padding: 25;">
+        <padding><Insets top="30" bottom="30" left="25" right="25"/></padding>
+        
+        <!-- Default State: No Product Selected -->
+        <VBox fx:id="emptyState" spacing="20" alignment="CENTER" VBox.vgrow="ALWAYS">
+            <Label text="📦" style="-fx-font-size: 80px;"/>
+            <Label text="Sélectionnez un produit" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a; -fx-text-alignment: center;" wrapText="true"/>
+            <Label text="Cliquez sur un produit pour voir ses détails complets" style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-text-alignment: center;" wrapText="true"/>
+        </VBox>
+        
+        <!-- Product Details (Hidden by default) -->
+        <ScrollPane fx:id="detailsContent" visible="false" managed="false" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+            <VBox spacing="20">
+                <!-- Product Image -->
+                <VBox alignment="CENTER" style="-fx-background-color: #f0f9ff; -fx-background-radius: 12px; -fx-padding: 20;">
+                    <ImageView fx:id="detailsImage" fitWidth="280" fitHeight="220" preserveRatio="true"/>
+                </VBox>
+                
+                <!-- Product Name -->
+                <Label fx:id="detailsNom" text="Nom du produit" wrapText="true" 
+                       style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a; -fx-wrap-text: true;"/>
+                
+                <!-- Category & Region -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="detailsCategorie" text="Catégorie" 
+                           style="-fx-background-color: #e0f2f1; -fx-text-fill: #1a7a7a; -fx-padding: 6 12; -fx-background-radius: 15px; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    <Label fx:id="detailsRegion" text="📍 Région" 
+                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+                </HBox>
+                
+                <!-- Price -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Prix:" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                    <Label fx:id="detailsPrix" text="0.00 TND" 
+                           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                </HBox>
+                
+                <!-- Stock -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Stock disponible:" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                    <Label fx:id="detailsStock" text="0 unités" 
+                           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+                </HBox>
+                
+                <Separator/>
+                
+                <!-- Description -->
+                <VBox spacing="8">
+                    <Label text="📝 Description" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a7a7a;"/>
+                    <Label fx:id="detailsDescription" text="Description du produit..." wrapText="true"
+                           style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-line-spacing: 1.5;"/>
+                </VBox>
+                
+                <Separator/>
+                
+                <!-- Action Buttons -->
+                <VBox spacing="12">
+                    <Button fx:id="btnDetailsAjouterPanier" text="🛒 Ajouter au panier" maxWidth="Infinity"
+                            style="-fx-background-color: #1a7a7a; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 10px; -fx-cursor: hand; -fx-padding: 14 20;"/>
+                    <Button fx:id="btnDetailsAjouterFavoris" text="❤️ Ajouter aux favoris" maxWidth="Infinity"
+                            style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 10px; -fx-cursor: hand; -fx-padding: 14 20;"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </VBox>
+
+</HBox>
